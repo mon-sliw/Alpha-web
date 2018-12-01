@@ -1,0 +1,34 @@
+<ul>
+  <li>
+    <a routerLink="/" (click)="login()">  <!--TODO remove login-->
+      <fa-icon [icon]="faHome"></fa-icon>
+      <span style="display: none">Home</span>
+    </a>
+  </li>
+  <li>
+    <a routerLink="/search" (click)="login()">  <!--TODO remove login-->
+      <fa-icon [icon]="faSearch"></fa-icon>
+      <span style="display: none">Search</span>
+    </a>
+  </li>
+  <li style="float: right" *ngIf="isLogged">
+    <a routerLink="/logout" (click)="logout()">  <!--TODO: logout-->
+      <fa-icon [icon]="faPowerOff"></fa-icon>
+      <span style="display: none"><br/>Logout</span>
+    </a>
+  </li>
+  <li style="float: right">
+    <a routerLink="/login" (click)="login()">  <!--TODO: profile, remove login-->
+      <fa-icon [icon]="faUser"></fa-icon>
+      <span style="display: none"><br/>Profile</span>
+    </a>
+  </li>
+  <li style="float: right">
+    <a routerLink="/admin" (click)="login()">  <!--TODO: profile, remove login-->
+      <fa-icon [icon]="faCog"></fa-icon>
+      <span style="display: none"><br/>Settings</span>
+    </a>
+  </li>
+</ul>
+
+<router-outlet></router-outlet>

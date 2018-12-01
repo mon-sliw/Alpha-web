@@ -1,0 +1,45 @@
+ul{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  background-color: whitesmoke;
+  border-bottom: 2px solid teal;
+  position: sticky;
+  position: -webkit-sticky; /* Safari */
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+li {
+  display: inline;
+  float: left;
+}
+
+li a {
+  display: block;
+  width: 60px;
+  background: whitesmoke;
+  color: teal;
+  text-decoration: none;
+  padding: 5px;
+  text-align: center;
+}
+
+li a:hover {
+  background-color: teal;
+  color: white;
+}
+
+li a:active{
+  background-color: darkslategray;
+}
+
+router-outlet{
+  position: fixed;
+  top: 30px;
+}
+
+fa-icon{
+  font-size: x-large;
+}

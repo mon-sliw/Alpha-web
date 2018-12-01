@@ -1,0 +1,38 @@
+ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 50px 0 0;
+  width: 25%;
+  background-color: whitesmoke;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+  /*border-right: 2px solid teal;*/
+}
+
+li a{
+  display: block;
+  color: darkslategray;
+  padding: 15px 10%;
+  text-decoration: none;
+}
+
+li a:hover{
+  cursor: pointer;
+}
+
+li a.checked{
+  background-color: teal;
+  color: white;
+}
+
+li a:hover:not(.checked){
+  background-color: darkslategray;
+  color: white;
+}
+
+div{
+  margin-left: 25%;
+  padding: 2%;
+  height: 1000px;
+}

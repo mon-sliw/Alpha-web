@@ -1,0 +1,16 @@
+.all {
+  margin-top: 7em;
+}
+
+td {
+  padding: 0.3em;
+}
+
+a {
+  color: inherit;
+  font-size: small;
+}
+
+.link {
+  margin-top: 1.5em;
+}

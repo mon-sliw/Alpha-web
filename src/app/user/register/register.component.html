@@ -1,0 +1,111 @@
+<!--TODO walidacja-->
+<div class="all">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <table>
+      <tr>
+        <td><label for="email">Email*</label></td>
+        <td><input type="email" id="email" formControlName="email" autocomplete="email"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div class="validationAlert" *ngIf="!form.controls['email'].valid && form.controls['email'].touched">
+            email
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="password">Hasło*</label></td>
+        <td><input type="password" id="password" formControlName="password" autocomplete="new-password"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div class="validationAlert" *ngIf="!form.controls['password'].valid && form.controls['password'].touched">
+            password
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="repeatPassword">Powtórz hasło*</label></td>
+        <td><input type="password" id="repeatPassword" formControlName="repeatPassword" autocomplete="new-password">
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div class="validationAlert"
+               *ngIf="!form.controls['repeatPassword'].valid && form.controls['repeatPassword'].touched">
+            repeatPassword
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="name">Imię*</label></td>
+        <td><input type="text" id="name" formControlName="name" autocomplete="given-name"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div class="validationAlert" *ngIf="!form.controls['name'].valid && form.controls['name'].touched">
+            name
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="surname">Nazwisko</label></td>
+        <td><input type="text" id="surname" formControlName="surname" autocomplete="family-name"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div class="validationAlert" *ngIf="!form.controls['surname'].valid && form.controls['surname'].touched">
+            surname
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="city">Miasto</label></td>
+        <td><input type="text" id="city" formControlName="city"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div class="validationAlert" *ngIf="!form.controls['city'].valid && form.controls['city'].touched">
+            city
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="dateOfBirth">Data urodzenia*</label></td>
+        <td><input type="date" id="dateOfBirth" formControlName="dateOfBirth" autocomplete="bday" min="1900-01-01"
+                   max="2005-12-31"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div class="validationAlert"
+               *ngIf="!form.controls['bday'].valid && form.controls['bday'].touched">
+            dateOfBirth
+          </div>
+        </td>
+      </tr>
+    </table>
+    <br/>
+    <div class="buttonIn">
+      <button type="submit" [disabled]="!form.valid">Rejestruj</button>
+    </div>
+  </form>
+  <p style="font-size: small">* Wymagane</p>
+</div>
+<div class="all" *ngIf="user.email">
+  Form value: {{form.value | json}}
+  email: {{user.email}}<br/>
+  pass: {{user.password}}<br/>
+  name: {{user.name}}<br/>
+  surname: {{user.surname}}<br/>
+  city: {{user.city}}<br/>
+  bday: {{user.bday}}<br/>
+</div>
+
+<!--todo dodaj login-->

@@ -1,0 +1,39 @@
+<!--TODO login nie email-->
+<div class="all">
+  <form [formGroup]="form" (ngSubmit)="logIn()">
+    <table>
+      <tr>
+        <td><label for="email">Email</label></td>
+        <td><input type="email" id="email" formControlName="email" autocomplete="email"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div class="validationAlert" *ngIf="!form.controls['email'].valid && form.controls['email'].touched">
+            Musisz podać adres email.
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="password">Hasło</label></td>
+        <td><input type="password" id="password" formControlName="password" autocomplete="current-password"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div class="validationAlert" *ngIf="!form.controls['password'].valid && form.controls['password'].touched">
+            Musisz podać hasło.
+          </div>
+        </td>
+      </tr>
+    </table>
+    <br/>
+    <div class="buttonIn">
+      <button type="submit" [disabled]="!form.valid">Zaloguj</button>
+    </div>
+  </form>
+  <div class="link">
+    <div><a routerLink="/register">Zarejestruj się</a></div>
+    <div style="margin-top: 0.5em"><a routerLink="/forgot-password">Nie pamiętasz hasła?</a></div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="all">
+  <table>
+    <tr>
+      <th>Login:</th>
+      <td>{{user.login}}</td>
+    </tr>
+    <tr>
+      <th>Email:</th>
+      <td>{{user.email}}</td>
+    </tr>
+    <tr>
+      <th>Imię:</th>
+      <td>{{user.name}}</td>
+    </tr>
+    <tr>
+      <th>Nazwisko:</th>
+      <td>{{user.surname}}</td>
+    </tr>
+    <tr>
+      <th>Miasto:</th>
+      <td>{{user.city}}</td>
+    </tr>
+    <tr>
+      <th>Data urodzenia:</th>
+      <td>{{user.bday}}</td>
+    </tr>
+  </table>
+  <div class="all">
+    <button class="left" routerLink="/profile-edit">Edytuj</button>
+    <button class="left" (click)="delete()">Usuń</button>
+  </div>
+</div>
