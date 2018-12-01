@@ -5,18 +5,19 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {HomeComponent} from './home/home.component';
 import {AdminPanelComponent} from './admin-panel/admin-panel.component';
-import {LoginComponent} from './user/login/login.component';
-import {RegisterComponent} from './user/register/register.component';
-import {ProfileComponent} from './user/profile/profile.component';
-import {EditProfileComponent} from './user/edit-profile/edit-profile.component';
+import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
+import {ProfileComponent} from './profile/profile.component';
+import {EditProfileComponent} from './edit-profile/edit-profile.component';
 
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {RegisterOkComponent} from './user/register-ok/register-ok.component';
-import { ForgotPasswordComponent } from './user/forgot-password/forgot-password.component';
-import { LogoutComponent } from './user/logout/logout.component';
-import { UserDeletedComponent } from './user/user-deleted/user-deleted.component';
-import { SearchComponent } from './search/search.component';
+import {RegisterOkComponent} from './register-ok/register-ok.component';
+import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
+import {LogoutComponent} from './logout/logout.component';
+import {UserDeletedComponent} from './user-deleted/user-deleted.component';
+import {SearchComponent} from './search/search.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { SearchComponent } from './search/search.component';
     AppRoutingModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

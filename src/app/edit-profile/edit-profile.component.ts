@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../../User';
+import {User} from '../User';
 import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
@@ -23,9 +23,9 @@ export class EditProfileComponent implements OnInit {
 
   form = this.fb.group({
     email: [this.user.email, [Validators.required, Validators.email]],
-    oldPassword: ['', [Validators.required]],
-    newPassword: ['', [Validators.required]],
-    repeatPassword: ['', [Validators.required]],
+    oldPassword: ['', []],
+    newPassword: ['', []],
+    repeatPassword: ['', []],
     name: [this.user.name, [Validators.required]],
     surname: [this.user.surname, []],
     city: [this.user.city, []],
@@ -50,6 +50,10 @@ export class EditProfileComponent implements OnInit {
 
     //TODO http
     //TODO exit
+  }
+
+  changePassword(){
+
   }
 
 }

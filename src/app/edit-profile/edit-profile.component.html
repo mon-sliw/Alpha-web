@@ -2,7 +2,7 @@
   <form [formGroup]="form" (ngSubmit)="save()">
     <table>
       <tr>
-        <td><label for="email">Email*</label></td>
+        <td><label for="email">Email</label></td>
         <td><input type="email" id="email" formControlName="email" autocomplete="email"></td>
       </tr>
       <tr>
@@ -14,7 +14,7 @@
         </td>
       </tr>
       <tr>
-        <td><label for="oldPassword">Hasło*</label></td>
+        <td><label for="oldPassword">Stare hasło</label></td>
         <td><input type="password" id="oldPassword" formControlName="oldPassword" autocomplete="current-password"></td>
       </tr>
       <tr>
@@ -26,8 +26,8 @@
         </td>
       </tr>
       <tr>
-        <td><label for="newPassword">Hasło*</label></td>
-        <td><input type="password" id="newPassword" formControlName="newPassword" autocomplete="new-password"></td>
+        <td><label for="newPassword">Nowe hasło</label></td>
+        <td><input type="password" id="newPassword" formControlName="newPassword" autocomplete="new-password" ></td>
       </tr>
       <tr>
         <td></td>
@@ -38,7 +38,7 @@
         </td>
       </tr>
       <tr>
-        <td><label for="repeatPassword">Powtórz hasło*</label></td>
+        <td><label for="repeatPassword">Powtórz hasło</label></td>
         <td><input type="password" id="repeatPassword" formControlName="repeatPassword" autocomplete="new-password">
         </td>
       </tr>
@@ -52,7 +52,7 @@
         </td>
       </tr>
       <tr>
-        <td><label for="name">Imię*</label></td>
+        <td><label for="name">Imię</label></td>
         <td><input type="text" id="name" formControlName="name" autocomplete="given-name"></td>
       </tr>
       <tr>
@@ -88,7 +88,7 @@
         </td>
       </tr>
       <tr>
-        <td><label for="dateOfBirth">Data urodzenia*</label></td>
+        <td><label for="dateOfBirth">Data urodzenia</label></td>
         <td><input type="date" id="dateOfBirth" formControlName="dateOfBirth" autocomplete="bday" min="1900-01-01"
                    max="2005-12-31"></td>
       </tr>
@@ -106,7 +106,6 @@
       <button type="submit" [disabled]="!form.valid">Zapisz zmiany</button>
     </div>
   </form>
-  <p style="font-size: small">* Wymagane</p>
 </div>
 
 <!--todo dodaj login-->

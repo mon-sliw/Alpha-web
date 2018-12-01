@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
+import {UserService} from '../user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,8 +17,9 @@ export class LoginComponent implements OnInit {
 
   email: String;
   password: String;
+  loginOK = false;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private user: UserService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -25,8 +28,12 @@ export class LoginComponent implements OnInit {
     this.email = this.form.get('email').value;
     this.password = this.form.get('password').value;
 
-    //TODO http
-    //TODO routing
+    this.user.login(this.email, this.password);
+
+    this.loginOK = this.user.isLoggedIn();
+    /*if (this.user.isLoggedIn()) {
+      this.router.navigate(['']);
+    }*/
   }
 
 }

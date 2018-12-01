@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,22 @@ export class UserService {
   }
 
   login(login, password) {
+/* TODO przenieś do rejestracji
+   const headers = new HttpHeaders();
+    this.http.post(
+      '/api/authenticate',
+      {'username': 'userlog',
+          'password': 'userlog'},
+    ).subscribe((res: any) => {
+      this.authToken = res.id_token;
+    });
+    headers.append('Authorization', `Bearer ${this.authToken}`);*/
+
     return this.http
       .post(
-        '/login', //TODO zmień
-        { login, password }
+        '/api/authenticate',
+        { 'username': login,
+          'password': password },
       )
       .subscribe((res: any) => {
         if (res.success) {

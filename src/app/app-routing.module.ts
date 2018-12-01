@@ -2,14 +2,14 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {AdminPanelComponent} from './admin-panel/admin-panel.component';
-import {LoginComponent} from './user/login/login.component';
-import {RegisterComponent} from './user/register/register.component';
-import {ProfileComponent} from './user/profile/profile.component';
-import {EditProfileComponent} from './user/edit-profile/edit-profile.component';
-import {RegisterOkComponent} from './user/register-ok/register-ok.component';
-import {ForgotPasswordComponent} from './user/forgot-password/forgot-password.component';
-import {LogoutComponent} from './user/logout/logout.component';
-import {UserDeletedComponent} from './user/user-deleted/user-deleted.component';
+import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
+import {ProfileComponent} from './profile/profile.component';
+import {EditProfileComponent} from './edit-profile/edit-profile.component';
+import {RegisterOkComponent} from './register-ok/register-ok.component';
+import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
+import {LogoutComponent} from './logout/logout.component';
+import {UserDeletedComponent} from './user-deleted/user-deleted.component';
 import {SearchComponent} from './search/search.component';
 
 
