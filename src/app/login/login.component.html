@@ -3,14 +3,14 @@
   <form [formGroup]="form" (ngSubmit)="logIn()">
     <table>
       <tr>
-        <td><label for="email">Email</label></td>
-        <td><input type="email" id="email" formControlName="email" autocomplete="email"></td>
+        <td><label for="login">Login</label></td>
+        <td><input type="text" id="login" formControlName="login" autocomplete="username"></td>
       </tr>
       <tr>
         <td></td>
         <td>
-          <div class="validationAlert" *ngIf="!form.controls['email'].valid && form.controls['email'].touched">
-            Musisz podać adres email.
+          <div class="validationAlert" *ngIf="!form.controls['login'].valid && form.controls['login'].touched">
+            Musisz podać login.
           </div>
         </td>
       </tr>

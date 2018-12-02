@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../User';
 import {FormBuilder, Validators} from '@angular/forms';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-edit-profile',
@@ -18,7 +19,8 @@ export class EditProfileComponent implements OnInit {
     name: "John",
     surname: "Doe",
     city: "City",
-    bday: "01-01-1970"
+    bday: "1970-01-01"
+    //1970-01-01T00:00:00Z
   };
 
   form = this.fb.group({
@@ -36,6 +38,7 @@ export class EditProfileComponent implements OnInit {
   constructor( private fb:FormBuilder) { }
 
   ngOnInit() {
+    console.info('bday: '+this.user.bday);
     this.login = localStorage.getItem('login');
     //TODO http user
   }

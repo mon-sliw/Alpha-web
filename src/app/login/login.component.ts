@@ -11,29 +11,36 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
 
   form = this.fb.group({
-    email: ['', Validators.required],
+    login: ['', Validators.required],
     password: ['', Validators.required]
   });
 
-  email: String;
-  password: String;
+  login: string;
+  password: string;
   loginOK = false;
-
   constructor(private fb: FormBuilder, private user: UserService, private router: Router) { }
 
   ngOnInit() {
   }
 
   logIn(){
-    this.email = this.form.get('email').value;
+    this.login = this.form.get('login').value;
     this.password = this.form.get('password').value;
 
-    this.user.login(this.email, this.password);
+    console.info('login: '+this.login+', password: '+this.password);
 
-    this.loginOK = this.user.isLoggedIn();
-    /*if (this.user.isLoggedIn()) {
-      this.router.navigate(['']);
-    }*/
+    this.user.login(this.login, this.password).subscribe((res: any) => {
+      if (res) {
+        console.info('http sukces');
+        localStorage.setItem('auth_token', res.id_token);
+        localStorage.setItem('login', this.login);
+        this.user.setLoggedInTrue();
+        this.loginOK = this.user.isLoggedIn();
+        console.info('loginOK: '+this.loginOK);
+        this.router.navigate(['']);
+      }
+      return res;
+    });
   }
 
 }

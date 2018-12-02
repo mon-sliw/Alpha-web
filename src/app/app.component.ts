@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {faCog, faHome, faPowerOff, faSearch, faUser} from '@fortawesome/free-solid-svg-icons';
+import {UserService} from './user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,13 +15,27 @@ export class AppComponent {
   faPowerOff = faPowerOff;
   faSearch = faSearch;
   faCog = faCog;
-  isLogged = true;
+
+  constructor(protected user: UserService, private router: Router) {
+  }
 
   logout() {
-    this.isLogged = false;
+    if (confirm('Czy na pewno chcesz się wylogować?')) {
+      this.user.logout().subscribe((res: any) => {
+        localStorage.removeItem('auth_token');
+        localStorage.removeItem('login');
+        this.user.setLoggedInFalse();
+        this.router.navigate(['/logout']);
+      });
+    }
   }
 
-  login() {
-    this.isLogged = true;
+  clickUser() {
+    if (this.user.isLoggedIn()) {
+      this.router.navigate(['/profile']);
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
+
 }

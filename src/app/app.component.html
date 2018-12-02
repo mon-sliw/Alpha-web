@@ -1,30 +1,30 @@
 <ul>
   <li>
-    <a routerLink="/" (click)="login()">  <!--TODO remove login-->
+    <a routerLink="/">
       <fa-icon [icon]="faHome"></fa-icon>
       <span style="display: none">Home</span>
     </a>
   </li>
   <li>
-    <a routerLink="/search" (click)="login()">  <!--TODO remove login-->
+    <a routerLink="/search" >
       <fa-icon [icon]="faSearch"></fa-icon>
       <span style="display: none">Search</span>
     </a>
   </li>
-  <li style="float: right" *ngIf="isLogged">
-    <a routerLink="/logout" (click)="logout()">  <!--TODO: logout-->
+  <li style="float: right" *ngIf="this.user.isLoggedIn()">
+    <a (click)="logout()">
       <fa-icon [icon]="faPowerOff"></fa-icon>
       <span style="display: none"><br/>Logout</span>
     </a>
   </li>
   <li style="float: right">
-    <a routerLink="/login" (click)="login()">  <!--TODO: profile, remove login-->
+    <a (click)="clickUser()">
       <fa-icon [icon]="faUser"></fa-icon>
       <span style="display: none"><br/>Profile</span>
     </a>
   </li>
-  <li style="float: right">
-    <a routerLink="/admin" (click)="login()">  <!--TODO: profile, remove login-->
+  <li style="float: right" *ngIf="this.user.isLoggedIn()">
+    <a routerLink="/profile-edit">
       <fa-icon [icon]="faCog"></fa-icon>
       <span style="display: none"><br/>Settings</span>
     </a>

@@ -15,7 +15,7 @@ export class UserService {
 
   login(login, password) {
 /* TODO przenieś do rejestracji
-   const headers = new HttpHeaders();
+   const headers = new HttpHeaders(); //źle
     this.http.post(
       '/api/authenticate',
       {'username': 'userlog',
@@ -24,31 +24,37 @@ export class UserService {
       this.authToken = res.id_token;
     });
     headers.append('Authorization', `Bearer ${this.authToken}`);*/
-
+console.info('login start http');
     return this.http
       .post(
-        '/api/authenticate',
+        'http://localhost:8080/api/authenticate',
         { 'username': login,
           'password': password },
-      )
-      .subscribe((res: any) => {
-        if (res.success) {
-          localStorage.setItem('auth_token', res.id_token);
-          localStorage.setItem('login', login);
-          this.loggedIn = true;
-        }
-        return res.success;
-      });
+      );
   }
 
   logout(){
-    //TODO http
-    localStorage.removeItem('auth_token');
-    localStorage.removeItem('login');
-    this.loggedIn = false;
+    const authToken = localStorage.getItem('auth_token');
+    console.info('token: '+authToken);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': `Bearer ${authToken}`
+      })
+    };
+    return this.http.get('http://localhost:8080/api/logout',
+      httpOptions);
   }
 
   isLoggedIn(){
     return this.loggedIn;
+  }
+
+  setLoggedInTrue(){
+    this.loggedIn = true;
+  }
+
+  setLoggedInFalse(){
+    this.loggedIn = false;
   }
 }
