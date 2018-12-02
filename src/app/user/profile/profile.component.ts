@@ -28,6 +28,7 @@ export class ProfileComponent implements OnInit {
      if (this.login == null){
        this.login = localStorage.getItem('login');
      }
+
     //TODO http
   }
 

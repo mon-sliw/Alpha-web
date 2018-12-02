@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {faCog, faHome, faPowerOff, faSearch, faUser} from '@fortawesome/free-solid-svg-icons';
-import {UserService} from './user.service';
+import {UserService} from './user/user.service';
 import {Router} from '@angular/router';
 
 @Component({
