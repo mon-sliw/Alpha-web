@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../User';
 import {FormBuilder, Validators} from '@angular/forms';
-import {formatDate} from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-edit-profile',
@@ -35,7 +35,7 @@ export class EditProfileComponent implements OnInit {
   });
 
 
-  constructor( private fb:FormBuilder) { }
+  constructor( private fb:FormBuilder, private router: Router) { }
 
   ngOnInit() {
     console.info('bday: '+this.user.bday);
@@ -52,7 +52,7 @@ export class EditProfileComponent implements OnInit {
     this.user.bday = this.form.get('bday').value;
 
     //TODO http
-    //TODO exit
+    this.router.navigate(['/profile']);
   }
 
   changePassword(){

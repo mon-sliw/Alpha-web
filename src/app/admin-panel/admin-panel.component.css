@@ -21,12 +21,12 @@ li a:hover{
   cursor: pointer;
 }
 
-li a.checked{
+li a.active{
   background-color: teal;
   color: white;
 }
 
-li a:hover:not(.checked){
+li a:hover:not(.active){
   background-color: darkslategray;
   color: white;
 }

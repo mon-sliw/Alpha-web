@@ -11,21 +11,23 @@ import {ForgotPasswordComponent} from './forgot-password/forgot-password.compone
 import {LogoutComponent} from './logout/logout.component';
 import {UserDeletedComponent} from './user-deleted/user-deleted.component';
 import {SearchComponent} from './search/search.component';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
   {path: 'admin', component: AdminPanelComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'profile', component: ProfileComponent},
   {path: 'profile/:login', component: ProfileComponent},
+  {path: 'profile', component: ProfileComponent},
   {path: 'profile-edit', component: EditProfileComponent}, //TODO popraw
   {path: 'register-ok', component: RegisterOkComponent},
-  {path: 'forgot-password', component:ForgotPasswordComponent},
+  {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'logout', component: LogoutComponent},
   {path: 'user-deleted', component: UserDeletedComponent},
-  {path: 'search', component:SearchComponent}
+  {path: 'search', component: SearchComponent},
+  {path: '', component: HomeComponent},
+  {path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({
