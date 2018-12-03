@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   login: string;
   password: string;
   loginOK = false;
-  constructor(private fb: FormBuilder, private user: UserService, private router: Router) { }
+  constructor(private fb: FormBuilder, protected user: UserService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -34,10 +34,15 @@ export class LoginComponent implements OnInit {
         console.info('http sukces');
         localStorage.setItem('auth_token', res.id_token);
         localStorage.setItem('login', this.login);
+        localStorage.setItem('admin', 'true');  //todo zmień
         this.user.setLoggedInTrue();
         this.loginOK = this.user.isLoggedIn();
         console.info('loginOK: '+this.loginOK);
-        this.router.navigate(['']);
+        if (this.user.redirected) {
+          this.router.navigate([this.user.redirectURL]);
+        } else {
+          this.router.navigate(['']);
+        }
       }
       return res;
     });

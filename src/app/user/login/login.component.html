@@ -1,5 +1,8 @@
 <!--TODO login nie email-->
 <div class="all">
+  <div *ngIf="this.user.redirected">Ta strona dostępna jest tylko dla zalogowanych użytkowników.</div>
+</div>
+<div class="all" style="margin-top: 2em">
   <form [formGroup]="form" (ngSubmit)="logIn()">
     <table>
       <tr>

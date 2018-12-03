@@ -1,16 +1,18 @@
 <ul>
   <li>
-    <a class="active" routerLinkActive="active">Użytkownicy</a>
+    <a routerLink="./users" routerLinkActive="active">Użytkownicy</a>
   </li>
   <li>
-    <a>Aktywności</a>
+    <a routerLink="./activities" routerLinkActive="active">Aktywności</a>
   </li>
   <li>
-    <a>Kategorie</a>
+    <a routerLink="./categories" routerLinkActive="active">Kategorie</a>
   </li>
   <li>
-    <a>Administratorzy</a>
+    <a routerLink="./admins" routerLinkActive="active">Administratorzy</a>
   </li>
 </ul>
 
-<div>Ustawienia</div>
+<div>
+  <router-outlet></router-outlet>
+</div>

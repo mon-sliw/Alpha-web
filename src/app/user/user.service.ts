@@ -8,6 +8,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 export class UserService {
 
   private loggedIn = false;
+  redirectURL = '';
+  redirected = false;
 
   constructor(private http: HttpClient) {
     this.loggedIn = !!localStorage.getItem('auth_token');
@@ -34,6 +36,7 @@ console.info('login start http');
   }
 
   logout(){
+    this.redirected = false;
     const authToken = localStorage.getItem('auth_token');
     console.info('token: '+authToken);
     const httpOptions = {
@@ -56,5 +59,9 @@ console.info('login start http');
 
   setLoggedInFalse(){
     this.loggedIn = false;
+  }
+
+  isAdmin(){
+    return !!localStorage.getItem('admin');
   }
 }

@@ -24,6 +24,8 @@ export class AppComponent {
       this.user.logout().subscribe((res: any) => {
         localStorage.removeItem('auth_token');
         localStorage.removeItem('login');
+        if(!!localStorage.getItem('admin'))
+        localStorage.removeItem('admin');
         this.user.setLoggedInFalse();
         this.router.navigate(['/logout']);
       });
