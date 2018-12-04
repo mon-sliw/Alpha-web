@@ -10,6 +10,9 @@ import { CategoriesComponent } from './categories/categories.component';
 import { UsersComponent } from './users/users.component';
 import { ActivitiesComponent } from './activities/activities.component';
 import { RestrictedComponent } from './restricted/restricted.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import { AddAdminComponent } from './add-admin/add-admin.component';
+import { EditAdminComponent } from './edit-admin/edit-admin.component';
 
 @NgModule({
   imports: [
@@ -18,6 +21,7 @@ import { RestrictedComponent } from './restricted/restricted.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    FontAwesomeModule
   ],
   declarations: [
     AdminPanelComponent,
@@ -25,7 +29,9 @@ import { RestrictedComponent } from './restricted/restricted.component';
     CategoriesComponent,
     UsersComponent,
     ActivitiesComponent,
-    RestrictedComponent
+    RestrictedComponent,
+    AddAdminComponent,
+    EditAdminComponent
   ]
 })
 export class AdminModule { }

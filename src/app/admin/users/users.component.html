@@ -1,3 +1,10 @@
-<p>
-  users works!
-</p>
+<div class="admin-all">
+  <ul class="list">
+    <li class="list-item" *ngFor="let user of users">
+      <div>
+        <div>{{user.name}} {{user.surname}} </div>
+        <button class="right" (click)="edit(user)"><fa-icon [icon]="faEdit"></fa-icon></button>
+      </div>
+    </li>
+  </ul>
+</div>

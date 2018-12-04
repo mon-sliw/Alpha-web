@@ -34,6 +34,7 @@ button:active, button:hover, input[type=submit]:active, input[type=submit]:hover
   /*background: darkslategray;
   border-color: darkslategray;*/
   /*box-shadow: 2px 2px 2px lightslategray;*/
+  cursor: pointer;
   box-shadow: 0 2px 10px 0 lightslategray, 0 2px 10px 0 lightslategray;
 
 }
@@ -107,3 +108,28 @@ button:disabled, input[type=submit]:disabled {
     transform: translateY(0px);
   }
 }
+
+.admin-all{
+  max-width: 90%;
+  margin: 2em auto auto 1em;
+}
+
+.list{
+  list-style-type: none;
+  margin: 0;
+  padding: 1em 0 0;
+}
+
+.list-item{
+  display: block;
+  text-decoration: none;
+  border: 1px solid darkslategray;
+  height: 2.5em;
+}
+
+.list-item div div{
+  margin-left: 1em;
+  margin-top: 0.5em;
+  display: inline-block;
+}
+

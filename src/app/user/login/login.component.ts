@@ -40,6 +40,8 @@ export class LoginComponent implements OnInit {
         console.info('loginOK: '+this.loginOK);
         if (this.user.redirected) {
           this.router.navigate([this.user.redirectURL]);
+        } else if(this.user.isAdmin()){
+          this.router.navigate(['/admin']);
         } else {
           this.router.navigate(['']);
         }

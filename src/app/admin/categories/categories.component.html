@@ -1,3 +1,31 @@
-<p>
-  categories works!
-</p>
+<div class="admin-all">
+  <button *ngIf="!adding" (click)="add()">
+    <fa-icon [icon]="faPlus"></fa-icon>
+  </button>
+
+  <div *ngIf="adding">
+    <label for="name" style="float: left; margin-top: 0.5em">Nowa kategoria:</label>
+    <input id="name" type="text" [formControl]="addingName" autocomplete="off">
+    <button (click)="addDone()" [disabled]="!addingName.valid">Dodaj</button>
+    <button (click)="cancel()">Anuluj</button>
+  </div>
+
+  <ul class="list">
+    <li class="list-item" *ngFor="let category of categories">
+      <div *ngIf="!(editingId==category.id)">
+        <div>{{category.name}}</div>
+        <button class="right" (click)="delete(category.id)">
+          <fa-icon [icon]="faTrash"></fa-icon>
+        </button>
+        <button class="right" (click)="edit(category)">
+          <fa-icon [icon]="faEdit"></fa-icon>
+        </button>
+        </div>
+      <div *ngIf="(editingId==category.id)">
+        <input style="margin-top: 0.5em; margin-left: 1em" type="text" [formControl]="editingName" autocomplete="off">
+        <button class="right" (click)="cancel()">Anuluj</button>
+        <button class="right" (click)="editDone()" [disabled]="!editingName.valid">Zapisz</button>
+      </div>
+    </li>
+  </ul>
+</div>

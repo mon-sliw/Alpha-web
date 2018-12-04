@@ -7,6 +7,8 @@ import {CategoriesComponent} from './categories/categories.component';
 import {ActivitiesComponent} from './activities/activities.component';
 import {AdminGuard} from '../auth/admin.guard';
 import {RestrictedComponent} from './restricted/restricted.component';
+import {AddAdminComponent} from './add-admin/add-admin.component';
+import {EditAdminComponent} from './edit-admin/edit-admin.component';
 
 const routes: Routes = [
   {
@@ -18,10 +20,23 @@ const routes: Routes = [
         path: '',
         canActivateChild: [AdminGuard],
         children: [
-          {path: 'users', component: UsersComponent},
+          {
+            path: 'users',
+            children: [
+              {path: '', component: UsersComponent},
+              {path: 'edit-user/:login', component: EditAdminComponent} //todo
+            ]
+          },
           {path: 'activities', component: ActivitiesComponent},
           {path: 'categories', component: CategoriesComponent},
-          {path: 'admins', component: AdminsComponent},
+          {
+            path: 'admins',
+            children: [
+              {path: '', component: AdminsComponent},
+              {path: 'add-admin', component: AddAdminComponent},
+              {path: 'edit-admin/:login', component: EditAdminComponent}
+            ]
+          },
           {path: '', redirectTo: '/admin/users', pathMatch: 'full'}
         ]
       }
