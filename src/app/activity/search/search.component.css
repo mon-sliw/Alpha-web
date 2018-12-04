@@ -1,4 +1,22 @@
 .search-box{
   background: #B3D9D9;
   width: 80%;
+  padding: 1em;
+}
+
+.all {
+  margin-top: 3em;
+}
+
+td {
+  padding: 0.3em;
+}
+
+a {
+  color: inherit;
+  font-size: small;
+}
+
+.link {
+  margin-top: 1.5em;
 }
