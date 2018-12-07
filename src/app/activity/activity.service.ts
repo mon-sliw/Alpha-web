@@ -1,0 +1,26 @@
+import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {MyHttpService} from '../my-http.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ActivityService {
+
+  constructor(private http: HttpClient, private myHttp: MyHttpService) { }
+
+  add(name: string, description: string, categoryId: string, datetime: Date, city: string, placeId: string){
+    const login = localStorage.getItem('login');
+    return this.http.post(this.myHttp.URL + '/events',
+      {
+        'name': name,
+        'city': city,
+        'placeId': placeId,
+        'description': description,
+        'date': datetime.toISOString(),
+        'author': login,
+        'category': categoryId
+      },
+      this.myHttp.getHttpOptions());
+  }
+}

@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
     firstName: "John",
     lastName: "Doe",
     city: "City",
-    bday: "01-01-1970"
+    bday: new Date('1970-01-01T00:00:00')
   };
 
   constructor(private route: ActivatedRoute) { }

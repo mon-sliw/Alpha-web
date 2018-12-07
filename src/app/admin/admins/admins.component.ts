@@ -26,7 +26,7 @@ export class AdminsComponent implements OnInit {
         lastName:'Kowalski',
         password: 'admin',
         email: 'admin@admin.com',
-        bday: '1970-01-01',
+        bday: new Date('1970-01-01T00:00:00'),
         city: 'Lublin'
       }
     ];

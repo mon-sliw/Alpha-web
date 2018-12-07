@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {MyHttpService} from '../my-http.service';
 
 
 @Injectable({
@@ -11,7 +12,7 @@ export class UserService {
   redirectURL = '';
   redirected = false;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private myHttp: MyHttpService) {
     this.loggedIn = !!localStorage.getItem('auth_token');
   }
 
@@ -29,7 +30,7 @@ export class UserService {
 console.info('login start http');
     return this.http
       .post(
-        'http://localhost:8080/api/authenticate',
+        this.myHttp.URL + '/authenticate',
         { 'username': login,
           'password': password },
       );
@@ -37,16 +38,9 @@ console.info('login start http');
 
   logout(){
     this.redirected = false;
-    const authToken = localStorage.getItem('auth_token');
-    console.info('token: '+authToken);
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': `Bearer ${authToken}`
-      })
-    };
-    return this.http.get('http://localhost:8080/api/logout',
-      httpOptions);
+
+    return this.http.get(this.myHttp.URL + '/logout',
+      this.myHttp.getHttpOptions());
   }
 
   isLoggedIn(){
@@ -63,5 +57,11 @@ console.info('login start http');
 
   isAdmin(){
     return !!localStorage.getItem('admin');
+  }
+
+  getAge(bday: Date): number{
+    const diff = Math.abs(Date.now() - bday.getDate());
+    const age = Math.floor((diff / (1000 * 3600 * 24 * 365)));
+    return age;
   }
 }

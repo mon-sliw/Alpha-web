@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {User} from '../../user/User';
 
@@ -35,7 +35,7 @@ export class AddAdminComponent implements OnInit {
     this.user.firstName = this.form.get('name').value;
     this.user.lastName = this.form.get('lastName').value;
     this.user.city = this.form.get('city').value;
-    this.user.bday = this.form.get('bday').value;
+    this.user.bday = new Date(this.form.get('bday').value + 'T00:00:00');
     // this.submitted = true;
 
     //TODO http

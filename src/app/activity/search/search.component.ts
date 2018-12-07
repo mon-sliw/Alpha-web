@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {Activity} from '../Activity';
 import {Router} from '@angular/router';
+import {Category} from '../../admin/Category';
+import {User} from '../../user/User';
 
 @Component({
   selector: 'app-search',
@@ -32,22 +34,24 @@ export class SearchComponent implements OnInit {
     this.activities = [{
       id: 1,
       name: 'Zagraj w tenisa',
-      authorId: 1,
-      categoryId: 1,
+      author: new User(),
+      category: new Category(),
       city: 'Lublin',
       date: new Date('2018-12-12'),
       description: '',
-      placeId: ''
+      placeId: '',
+      members: []
     },
       {
         id: 2,
         name: "Mamma Mia w Multikinie",
-        authorId: 2,
-        categoryId: 2,
+        author: new User(),
+        category: new Category(),
         city: 'Lublin',
         date: new Date('2018-12-07'),
         description: '',
-        placeId: ''
+        placeId: '',
+        members: []
       }];
   }
 

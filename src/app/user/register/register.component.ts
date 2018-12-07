@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
     this.user.firstName = this.form.get('firstName').value;
     this.user.lastName = this.form.get('lastName').value;
     this.user.city = this.form.get('city').value;
-    this.user.bday = this.form.get('bday').value;
+    this.user.bday = new Date(this.form.get('bday').value + 'T00:00:00');
 
     //TODO http
     //TODO register-ok

@@ -24,7 +24,7 @@ export class EditProfileComponent implements OnInit, CanComponentDeactivate {
     firstName: 'John',
     lastName: 'Doe',
     city: 'City',
-    bday: '1970-01-01'
+    bday: new Date('1970-01-01T00:00:00')
     //1970-01-01T00:00:00Z
   };
 
@@ -36,7 +36,7 @@ export class EditProfileComponent implements OnInit, CanComponentDeactivate {
     name: [this.user.firstName, [Validators.required]],
     surname: [this.user.lastName, []],
     city: [this.user.city, []],
-    bday: [this.user.bday, [Validators.required]]
+    bday: [this.user.bday.toDateString(), [Validators.required]]
   });
 
 
@@ -44,7 +44,7 @@ export class EditProfileComponent implements OnInit, CanComponentDeactivate {
   }
 
   ngOnInit() {
-    console.info('bday: ' + this.user.bday);
+    console.info('bday: ' + this.user.bday.toLocaleDateString());
     this.login = localStorage.getItem('login');
     //TODO http user
   }
@@ -55,7 +55,7 @@ export class EditProfileComponent implements OnInit, CanComponentDeactivate {
     this.user.firstName = this.form.get('name').value;
     this.user.lastName = this.form.get('lastName').value;
     this.user.city = this.form.get('city').value;
-    this.user.bday = this.form.get('bday').value;
+    this.user.bday = new Date(this.form.get('bday').value);
 
     //TODO http
     this.router.navigate(['/profile']);

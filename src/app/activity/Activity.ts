@@ -1,10 +1,14 @@
+import {Category} from '../admin/Category';
+import {User} from '../user/User';
+
 export class Activity {
   id: number;
   name: string;
   description: string;
-  categoryId: number;
+  category: Category;
   date: Date;
-  authorId: number;
+  author: User;
   placeId: string;
   city: string;
+  members: User[];
 }

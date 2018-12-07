@@ -96,15 +96,5 @@
       <button type="submit" [disabled]="!form.valid">Dodaj nowego administratora</button>
     </div>
   </form>
-</div>
-<div class="all" *ngIf="user.email">
-  Form value: {{form.value | json}}
-  email: {{user.email}}<br/>
-  pass: {{user.password}}<br/>
-  firstName: {{user.firstName}}<br/>
-  lastName: {{user.lastName}}<br/>
-  city: {{user.city}}<br/>
-  bday: {{user.bday}}<br/>
-</div>
 
 <!--todo dodaj login-->

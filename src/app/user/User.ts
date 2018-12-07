@@ -6,6 +6,6 @@ export class User {//TODO popraw wszystkie użycia
   firstName: string;
   lastName: string;
   city: string;
-  bday: string;
+  bday: Date;
 }
 //todo get age?
