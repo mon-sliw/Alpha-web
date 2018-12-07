@@ -1,0 +1,7 @@
+input {
+  width: 99%
+}
+
+select {
+  min-width: 60%;
+}

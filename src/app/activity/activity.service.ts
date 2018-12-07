@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {MyHttpService} from '../my-http.service';
+import {Observable} from 'rxjs';
+import {Category} from '../admin/Category';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +23,11 @@ export class ActivityService {
         'author': login,
         'category': categoryId
       },
+      this.myHttp.getHttpOptions());
+  }
+
+  getAllCategories(): Observable<Category[]>{
+    return this.http.get<Category[]>(this.myHttp.URL + '/category/all',
       this.myHttp.getHttpOptions());
   }
 }

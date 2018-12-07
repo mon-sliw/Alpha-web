@@ -1,5 +1,60 @@
 <div class="all">
-  <form>
-
+  <form [formGroup]="form" (ngSubmit)="add()">
+    <table>
+      <tr>
+        <td><label for="name">Nazwa:</label></td>
+        <td><input type="text" id="name" formControlName="name" autocomplete="off"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div class="validationAlert" *ngIf="!form.controls['name'].valid && form.controls['name'].touched">
+            Musisz podać nazwę wydarzenia.
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="category">Kategoria</label></td>
+        <td>
+          <select id="category" formControlName="category">
+            <option value="">--Wybierz kategorię--</option>
+            <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div class="validationAlert" *ngIf="!form.controls['category'].valid && form.controls['category'].touched">
+            Musisz wybrać kategorię.
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="datetime">Czas:</label></td>
+        <td><input type="datetime-local" id="datetime" formControlName="datetime" autocomplete="off"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div class="validationAlert" *ngIf="!form.controls['datetime'].valid && form.controls['datetime'].touched">
+            Musisz podać datę i godzinę wydarzenia.
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="description">Opis wydarzenia:</label></td>
+        <td><textarea rows="4" cols="50" id="description" formControlName="description" autocomplete="off"></textarea></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div class="validationAlert" *ngIf="!form.controls['description'].valid && form.controls['description'].touched">
+            Musisz podać opis wydarzenia.
+          </div>
+        </td>
+      </tr>
+    </table>
+    <div class="buttonIn"><button type="submit" [disabled]="!form.valid">Dodaj</button></div>
   </form>
 </div>
