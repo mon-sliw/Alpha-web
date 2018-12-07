@@ -35,7 +35,9 @@ export class SearchComponent implements OnInit {
       authorId: 1,
       categoryId: 1,
       city: 'Lublin',
-      date: '2018-12-12'
+      date: new Date('2018-12-12'),
+      description: '',
+      placeId: ''
     },
       {
         id: 2,
@@ -43,7 +45,9 @@ export class SearchComponent implements OnInit {
         authorId: 2,
         categoryId: 2,
         city: 'Lublin',
-        date: '2018-12-07'
+        date: new Date('2018-12-07'),
+        description: '',
+        placeId: ''
       }];
   }
 

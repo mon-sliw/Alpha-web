@@ -3,8 +3,8 @@ export class Activity {
   name: string;
   description: string;
   categoryId: number;
-  date: string;
+  date: Date;
   authorId: number;
+  placeId: string;
   city: string;
-//todo ustal co ma być
 }

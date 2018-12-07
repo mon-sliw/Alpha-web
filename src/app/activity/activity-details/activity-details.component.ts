@@ -28,7 +28,8 @@ export class ActivityDetailsComponent implements OnInit {
       authorId: 1,
       categoryId: 1,
       city: 'Lublin',
-      date: '2018-12-12'
+      date: new Date('2018-12-12'),
+      placeId: ''
     };
     this.members = [
       {

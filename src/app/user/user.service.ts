@@ -21,7 +21,7 @@ export class UserService {
     this.http.post(
       '/api/authenticate',
       {'username': 'userlog',
-          'password': 'userlog'},
+          'password': 'admin'},
     ).subscribe((res: any) => {
       this.authToken = res.id_token;
     });
