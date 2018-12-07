@@ -1,5 +1,6 @@
+<!--todo responsywność-->
 <div class="all">
-  <div style="background: #B3D9D9">
+  <div style="background: #B3D9D9; width: fit-content;">
     <form [formGroup]="form" (submit)="search()">
       <table >
       <tr>
@@ -15,7 +16,8 @@
           </td>
           <td><label>Kategoria:</label></td>
           <td><select>
-            <option>--Wszystkie kategorie--</option>
+            <option value="">--Wszystkie kategorie--</option>
+            <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
           </select></td>
           <td> <label>Data:</label></td>
           <td><input type="date"></td>

@@ -1,4 +1,4 @@
-export class User {//TODO popraw wszystkie użycia
+export class User {
   id: number;
   login: string;
   email: string;
@@ -8,4 +8,3 @@ export class User {//TODO popraw wszystkie użycia
   city: string;
   bday: Date;
 }
-//todo get age?

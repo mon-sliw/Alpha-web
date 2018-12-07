@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {faEdit, faPlus, faTrash} from '@fortawesome/free-solid-svg-icons';
 import {Category} from '../Category';
 import {FormControl, Validators} from '@angular/forms';
+import {ActivityService} from '../../activity/activity.service';
+import {collectExternalReferences} from '@angular/compiler';
 
 @Component({
   selector: 'app-categories',
@@ -19,18 +21,18 @@ export class CategoriesComponent implements OnInit {
   adding = false;
   editingId = -1;
 
-  constructor() {
+  constructor(private activityService: ActivityService) {
   }
 
   ngOnInit() {
-    //todo http, zastąp kategorie
-    this.categories = [
+    /*this.categories = [
       {id: 1, name: 'Tenis'},
       {id: 2, name: 'Kino'},
       {id: 3, name: 'Koncert'},
       {id: 4, name: 'Piłka nożna'},
       {id: 5, name: 'Wycieczka rowerowa'}
-    ];
+    ];*/
+    this.updateCategories();
   }
 
   add() {
@@ -39,9 +41,14 @@ export class CategoriesComponent implements OnInit {
 
   addDone() {
     const name = this.addingName.value;
-    this.categories.concat([{id: this.categories.length + 1, name: name}]);
-    this.adding = false;
-    //todo http
+    this.activityService.addCategory(name).subscribe(
+      () => {
+        this.adding = false;
+        this.addingName.setValue('');
+        console.info('category added');
+        this.updateCategories();
+      });
+
   }
 
   cancel() {
@@ -55,16 +62,31 @@ export class CategoriesComponent implements OnInit {
     this.editingName.setValue(category.name);
   }
 
-  editDone(){
-    this.editingId = -1;
+  editDone() {
     const name = this.editingName.value;
-    //todo http
+    this.activityService.updateCategory('' + this.editingId, name).subscribe(
+      () => {
+        this.editingId = -1;
+        this.updateCategories();
+      });
   }
 
   delete(id: number) {
-    if (confirm("Czy na pewno chcesz usunąć kategorię?")){
-      //todo http
+    if (confirm('Czy na pewno chcesz usunąć kategorię?')) {
+      this.activityService.deleteCategory('' + id).subscribe(
+        () => {
+          console.info('deleted');
+          this.updateCategories();
+        });
     }
+  }
+
+  updateCategories() {
+    this.activityService.getAllCategories().subscribe(
+      categories => {
+        this.categories = categories;
+        console.info('get categories');
+      });
   }
 
 }

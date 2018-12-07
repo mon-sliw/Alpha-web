@@ -4,6 +4,7 @@ import {Activity} from '../Activity';
 import {Router} from '@angular/router';
 import {Category} from '../../admin/Category';
 import {User} from '../../user/User';
+import {ActivityService} from '../activity.service';
 
 @Component({
   selector: 'app-search',
@@ -19,13 +20,19 @@ export class SearchComponent implements OnInit {
     date: ['', []]
   });
 
+  categories: Category[];
+
   activities: Activity[];
   searchDone = false;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private activityService: ActivityService) {
   }
 
   ngOnInit() {
+    this.activityService.getAllCategories().subscribe(
+      categories =>
+      {this.categories = categories;
+        console.info('got categories')});
   }
 
   search() {

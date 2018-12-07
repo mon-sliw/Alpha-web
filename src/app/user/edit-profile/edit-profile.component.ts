@@ -24,8 +24,8 @@ export class EditProfileComponent implements OnInit, CanComponentDeactivate {
     firstName: 'John',
     lastName: 'Doe',
     city: 'City',
-    bday: new Date('1970-01-01T00:00:00')
-    //1970-01-01T00:00:00Z
+    bday: new Date('1970-01-01T00:00:00Z')
+    //1970-01-01T00:00:00ZZ
   };
 
   form = this.fb.group({
