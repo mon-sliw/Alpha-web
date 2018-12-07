@@ -53,25 +53,25 @@
       </tr>
       <tr>
         <td><label for="name">Imię</label></td>
-        <td><input type="text" id="name" formControlName="name" autocomplete="given-name"></td>
+        <td><input type="text" id="name" formControlName="firstName" autocomplete="given-firstName"></td>
       </tr>
       <tr>
         <td></td>
         <td>
           <div class="validationAlert" *ngIf="!form.controls['name'].valid && form.controls['name'].touched">
-            name
+            firstName
           </div>
         </td>
       </tr>
       <tr>
         <td><label for="surname">Nazwisko</label></td>
-        <td><input type="text" id="surname" formControlName="surname" autocomplete="family-name"></td>
+        <td><input type="text" id="surname" formControlName="lastName" autocomplete="family-firstName"></td>
       </tr>
       <tr>
         <td></td>
         <td>
-          <div class="validationAlert" *ngIf="!form.controls['surname'].valid && form.controls['surname'].touched">
-            surname
+          <div class="validationAlert" *ngIf="!form.controls['lastName'].valid && form.controls['lastName'].touched">
+            lastName
           </div>
         </td>
       </tr>

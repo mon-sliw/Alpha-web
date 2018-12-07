@@ -2,7 +2,7 @@
   <button routerLink="./add-admin"><fa-icon [icon]="faPlus"></fa-icon></button>
   <ul class="list">
     <li class="list-item" *ngFor="let admin of admins">
-      <div><div>{{admin.name}} {{admin.surname}}</div>
+      <div><div>{{admin.firstName}} {{admin.lastName}}</div>
       <button class="right" (click)="edit(admin)"><fa-icon [icon]="faEdit"></fa-icon></button></div>
     </li>
   </ul>

@@ -9,31 +9,34 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
-  login = "";
+  login: string;
 
   user: User = {
+    id: 1,
     login: "login",
     email: "user@user.com",
     password: "passwd",
-    name: "John",
-    surname: "Doe",
+    firstName: "John",
+    lastName: "Doe",
     city: "City",
     bday: "01-01-1970"
   };
 
   constructor(private route: ActivatedRoute) { }
 
-  ngOnInit() {
+  ngOnInit() {  //todo czy login?
     this.login = this.route.snapshot.paramMap.get('login');
      if (this.login == null){
        this.login = localStorage.getItem('login');
      }
-
     //TODO http
   }
 
   delete(){
-
+    if(confirm("Czy na pewno chcesz usunąć konto?")){
+      //todo http
+      //todo user-deleted
+    }
   }
 
 }

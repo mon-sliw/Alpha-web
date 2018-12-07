@@ -16,9 +16,10 @@ export class EditAdminComponent implements OnInit {
   changed = false; //todo sprawdź
 
   user: User = {
+    id: 1,
     login: 'admin',
-    name:'Jan',
-    surname:'Kowalski',
+    firstName:'Jan',
+    lastName:'Kowalski',
     password: 'admin',
     email: 'admin@admin.com',
     bday: '1970-01-01',
@@ -26,12 +27,13 @@ export class EditAdminComponent implements OnInit {
   };
 
   form = this.fb.group({
+    login: [this.user.login, [Validators.required]],
     email: [this.user.email, [Validators.required, Validators.email]],
     oldPassword: ['', []],
     newPassword: ['', []],
     repeatPassword: ['', []],
-    name: [this.user.name, [Validators.required]],
-    surname: [this.user.surname, []],
+    name: [this.user.firstName, [Validators.required]],
+    surname: [this.user.lastName, []],
     city: [this.user.city, []],
     bday: [this.user.bday, [Validators.required]]
   });
@@ -48,8 +50,8 @@ export class EditAdminComponent implements OnInit {
   save() {
     this.user.email = this.form.get('email').value;
     this.user.password = this.form.get('password').value;
-    this.user.name = this.form.get('name').value;
-    this.user.surname = this.form.get('surname').value;
+    this.user.firstName = this.form.get('name').value;
+    this.user.lastName = this.form.get('lastName').value;
     this.user.city = this.form.get('city').value;
     this.user.bday = this.form.get('bday').value;
 

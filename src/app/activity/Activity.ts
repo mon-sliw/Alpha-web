@@ -1,8 +1,10 @@
 export class Activity {
   id: number;
-  name: number;
+  name: string;
+  description: string;
   categoryId: number;
   date: string;
   authorId: number;
-  city: string; //todo pełny adres
+  city: string;
+//todo ustal co ma być
 }

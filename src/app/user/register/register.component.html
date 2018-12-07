@@ -3,6 +3,18 @@
   <form [formGroup]="form" (ngSubmit)="submit()">
     <table>
       <tr>
+        <td><label for="login">Login*</label></td>
+        <td><input type="text" id="login" formControlName="login" autocomplete="username"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div class="validationAlert" *ngIf="!form.controls['login'].valid && form.controls['login'].touched">
+            login
+          </div>
+        </td>
+      </tr>
+      <tr>
         <td><label for="email">Email*</label></td>
         <td><input type="email" id="email" formControlName="email" autocomplete="email"></td>
       </tr>
@@ -41,26 +53,26 @@
         </td>
       </tr>
       <tr>
-        <td><label for="name">Imię*</label></td>
-        <td><input type="text" id="name" formControlName="name" autocomplete="given-name"></td>
+        <td><label for="firstName">Imię*</label></td>
+        <td><input type="text" id="firstName" formControlName="firstName" autocomplete="given-name"></td>
       </tr>
       <tr>
         <td></td>
         <td>
-          <div class="validationAlert" *ngIf="!form.controls['name'].valid && form.controls['name'].touched">
-            name
+          <div class="validationAlert" *ngIf="!form.controls['firstName'].valid && form.controls['firstName'].touched">
+            firstName
           </div>
         </td>
       </tr>
       <tr>
-        <td><label for="surname">Nazwisko</label></td>
-        <td><input type="text" id="surname" formControlName="surname" autocomplete="family-name"></td>
+        <td><label for="lastName">Nazwisko</label></td>
+        <td><input type="text" id="lastName" formControlName="lastName" autocomplete="family-name"></td>
       </tr>
       <tr>
         <td></td>
         <td>
-          <div class="validationAlert" *ngIf="!form.controls['surname'].valid && form.controls['surname'].touched">
-            surname
+          <div class="validationAlert" *ngIf="!form.controls['lastName'].valid && form.controls['lastName'].touched">
+            lastName
           </div>
         </td>
       </tr>
@@ -98,14 +110,3 @@
   </form>
   <p style="font-size: small">* Wymagane</p>
 </div>
-<div class="all" *ngIf="user.email">
-  Form value: {{form.value | json}}
-  email: {{user.email}}<br/>
-  pass: {{user.password}}<br/>
-  name: {{user.name}}<br/>
-  surname: {{user.surname}}<br/>
-  city: {{user.city}}<br/>
-  bday: {{user.bday}}<br/>
-</div>
-
-<!--todo dodaj login-->

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
+import {Activity} from '../Activity';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -15,13 +17,39 @@ export class SearchComponent implements OnInit {
     date: ['', []]
   });
 
-  constructor(private fb: FormBuilder) { }
+  activities: Activity[];
+  searchDone = false;
+
+  constructor(private fb: FormBuilder, private router: Router) {
+  }
 
   ngOnInit() {
   }
 
-  search(){
-
+  search() {
+    //todo http
+    this.searchDone = true;
+    this.activities = [{
+      id: 1,
+      name: 'Zagraj w tenisa',
+      authorId: 1,
+      categoryId: 1,
+      city: 'Lublin',
+      date: '2018-12-12'
+    },
+      {
+        id: 2,
+        name: "Mamma Mia w Multikinie",
+        authorId: 2,
+        categoryId: 2,
+        city: 'Lublin',
+        date: '2018-12-07'
+      }];
   }
 
+
+  details(activity: Activity){
+    const id = activity.id;
+    this.router.navigate(['/activity/'+id]);
+  }
 }

@@ -17,11 +17,12 @@ export class EditProfileComponent implements OnInit, CanComponentDeactivate {
   changed = false; //todo sprawdź
 
   user: User = {
+    id: 1,
     login: 'login',
     email: 'user@user.com',
     password: 'passwd',
-    name: 'John',
-    surname: 'Doe',
+    firstName: 'John',
+    lastName: 'Doe',
     city: 'City',
     bday: '1970-01-01'
     //1970-01-01T00:00:00Z
@@ -32,8 +33,8 @@ export class EditProfileComponent implements OnInit, CanComponentDeactivate {
     oldPassword: ['', []],
     newPassword: ['', []],
     repeatPassword: ['', []],
-    name: [this.user.name, [Validators.required]],
-    surname: [this.user.surname, []],
+    name: [this.user.firstName, [Validators.required]],
+    surname: [this.user.lastName, []],
     city: [this.user.city, []],
     bday: [this.user.bday, [Validators.required]]
   });
@@ -51,8 +52,8 @@ export class EditProfileComponent implements OnInit, CanComponentDeactivate {
   save() {
     this.user.email = this.form.get('email').value;
     this.user.password = this.form.get('password').value;
-    this.user.name = this.form.get('name').value;
-    this.user.surname = this.form.get('surname').value;
+    this.user.firstName = this.form.get('name').value;
+    this.user.lastName = this.form.get('lastName').value;
     this.user.city = this.form.get('city').value;
     this.user.bday = this.form.get('bday').value;
 

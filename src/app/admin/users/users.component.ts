@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {faEdit, faPlus} from '@fortawesome/free-solid-svg-icons';
+import {Component, OnInit} from '@angular/core';
+import {faEdit} from '@fortawesome/free-solid-svg-icons';
 import {User} from '../../user/User';
 import {Router} from '@angular/router';
 
@@ -10,7 +10,6 @@ import {Router} from '@angular/router';
 })
 export class UsersComponent implements OnInit {
 
-  faPlus = faPlus;
   faEdit = faEdit;
 
   users: User[];
@@ -20,28 +19,31 @@ export class UsersComponent implements OnInit {
   ngOnInit() {
     this.users = [
       {
+        id: 1,
         login: 'admin',
-        name:'Jan',
-        surname:'Kowalski',
+        firstName:'Jan',
+        lastName:'Kowalski',
         password: 'admin',
         email: 'admin@admin.com',
         bday: '1970-01-01',
         city: 'Lublin'
       },
       {
+        id: 2,
         login: "john_d",
         email: "user@user.com",
         password: "passwd",
-        name: "John",
-        surname: "Doe",
+        firstName: "John",
+        lastName: "Doe",
         city: "City",
         bday: "1999-09-19"
       }
     ]
+
+    //todo http
   }
 
-  edit(admin: User){
-    //todo popraw
-    this.router.navigate(['admin/users/edit-user/'+admin.login]);
+  edit(user: User){
+    this.router.navigate(['admin/users/edit-user/'+user.login]);
   }
 }

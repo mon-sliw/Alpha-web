@@ -6,17 +6,35 @@
 
 .all {
   margin-top: 3em;
+  /*width: 80%;*/
 }
 
 td {
-  padding: 0.3em;
+  padding: 0.5em;
 }
 
-a {
+
+
+/*a {
   color: inherit;
   font-size: small;
 }
 
 .link {
   margin-top: 1.5em;
+}*/
+
+li{
+  padding: 0.5em;
+}
+
+li:hover{
+  background: #B3D9D9;
+  cursor: pointer;
+}
+
+li div div {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  font-weight: bold;
 }

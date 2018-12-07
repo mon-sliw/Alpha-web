@@ -2,9 +2,11 @@
   <ul class="list">
     <li class="list-item" *ngFor="let user of users">
       <div>
-        <div>{{user.name}} {{user.surname}} </div>
+        <div>{{user.firstName}} {{user.lastName}} </div>
         <button class="right" (click)="edit(user)"><fa-icon [icon]="faEdit"></fa-icon></button>
       </div>
     </li>
   </ul>
 </div>
+
+<!--todo ew. zmień na tabelę-->

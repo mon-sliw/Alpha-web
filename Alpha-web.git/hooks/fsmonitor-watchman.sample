@@ -63,7 +63,7 @@ sub launch_watchman {
 	my $query = <<"	END";
 		["query", "$git_work_tree", {
 			"since": $time,
-			"fields": ["name"],
+			"fields": ["firstName"],
 			"expression": ["not", ["allof", ["since", $time, "cclock"], ["not", "exists"]]]
 		}]
 	END

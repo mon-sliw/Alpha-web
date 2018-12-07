@@ -1,0 +1,17 @@
+<div class="all">
+  <h3>{{activity.name}}</h3>
+  <h4>Data:</h4>
+  {{activity.date}}
+  <h4>Miejsce:</h4>
+  {{activity.city}}
+  <!--todo pełny adres?-->
+  <h4>Opis:</h4>
+  <p>{{activity.description}}</p>
+
+  <h4>Uczestnicy:</h4>
+  <ul>
+    <li *ngFor="let member of members">
+      {{member.firstName}}
+    </li>
+  </ul>
+</div>

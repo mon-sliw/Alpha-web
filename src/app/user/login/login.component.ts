@@ -18,9 +18,16 @@ export class LoginComponent implements OnInit {
   login: string;
   password: string;
   loginOK = false;
+  redirected = false;
+  url = '';
+
   constructor(private fb: FormBuilder, protected user: UserService, private router: Router) { }
 
   ngOnInit() {
+    this.url = this.user.redirectURL;
+    this.user.redirectURL = '';
+    this.redirected = this.user.redirected;
+    this.user.redirected = false;
   }
 
   logIn(){
@@ -38,8 +45,8 @@ export class LoginComponent implements OnInit {
         this.user.setLoggedInTrue();
         this.loginOK = this.user.isLoggedIn();
         console.info('loginOK: '+this.loginOK);
-        if (this.user.redirected) {
-          this.router.navigate([this.user.redirectURL]);
+        if (this.redirected) {
+          this.router.navigate([this.url]);
         } else if(this.user.isAdmin()){
           this.router.navigate(['/admin']);
         } else {

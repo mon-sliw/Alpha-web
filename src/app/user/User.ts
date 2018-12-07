@@ -1,9 +1,11 @@
 export class User {//TODO popraw wszystkie użycia
+  id: number;
   login: string;
   email: string;
   password: string;
-  name: string; //todo first-name
-  surname: string;  //todo last-name
+  firstName: string;
+  lastName: string;
   city: string;
   bday: string;
 }
+//todo get age?

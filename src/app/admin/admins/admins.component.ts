@@ -19,9 +19,11 @@ export class AdminsComponent implements OnInit {
   ngOnInit() {
     //todo http
     this.admins = [
-      {login: 'admin',
-        name:'Jan',
-        surname:'Kowalski',
+      {
+        id: 1,
+        login: 'admin',
+        firstName:'Jan',
+        lastName:'Kowalski',
         password: 'admin',
         email: 'admin@admin.com',
         bday: '1970-01-01',

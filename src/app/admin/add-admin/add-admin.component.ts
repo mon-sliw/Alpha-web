@@ -32,8 +32,8 @@ export class AddAdminComponent implements OnInit {
 //    console.info('submit');
     this.user.email = this.form.get('email').value;
     this.user.password = this.form.get('password').value;
-    this.user.name = this.form.get('name').value;
-    this.user.surname = this.form.get('surname').value;
+    this.user.firstName = this.form.get('name').value;
+    this.user.lastName = this.form.get('lastName').value;
     this.user.city = this.form.get('city').value;
     this.user.bday = this.form.get('bday').value;
     // this.submitted = true;
