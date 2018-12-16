@@ -60,8 +60,8 @@ console.info('login start http');
   }
 
   getAge(bday: Date): number{
-    const diff = Math.abs(Date.now() - bday.getDate());
-    const age = Math.floor((diff / (1000 * 3600 * 24 * 365)));
-    return age;
+    const diff = Math.abs(new Date(Date.now()).getFullYear() - bday.getFullYear());
+    // const age = Math.floor((diff / (1000 * 3600 * 24 * 365)));
+    return diff;
   }
 }

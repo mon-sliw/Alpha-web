@@ -33,8 +33,8 @@ export class UsersComponent implements OnInit {
         login: "john_d",
         email: "user@user.com",
         password: "passwd",
-        firstName: "John",
-        lastName: "Doe",
+        firstName: "Anna",
+        lastName: "Nowak",
         city: "City",
         bday: new Date("1999-09-19" + 'T00:00:00Z')
       }

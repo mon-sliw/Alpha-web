@@ -1,7 +1,7 @@
 <div class="all">
   <h3>{{activity.name}}</h3>
   <h4>Data:</h4>
-  {{activity.date.toLocaleString()}}
+  {{activity.date.toLocaleString().substr(0, 17)}}
   <h4>Miejsce:</h4>
   {{activity.city}}
   <!--todo pełny adres?-->
@@ -11,7 +11,7 @@
   <h4>Uczestnicy:</h4>
   <ul>
     <li *ngFor="let member of members">
-      {{member.firstName}}
+      {{member.firstName}}, {{user.getAge(member.bday)}}
     </li>
   </ul>
 </div>

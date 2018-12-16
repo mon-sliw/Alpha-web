@@ -5,22 +5,26 @@
       <table >
       <tr>
         <td><label>Szukaj:</label></td>
-        <td colspan="5"><input style="width: 100%" type="text"></td>
+        <td><input style="width: 100%" type="text" formControlName="searchWords"></td> <!--colspan="5"-->
       </tr>
         <tr>
           <td>
             <label>Miasto:</label>
           </td>
           <td>
-            <input type="text">
+            <input type="text" #somethingElse autocomplete="off" formControlName="somethingElse">
           </td>
+        </tr>
+          <tr>
           <td><label>Kategoria:</label></td>
-          <td><select>
+          <td><select formControlName="category">
             <option value="">--Wszystkie kategorie--</option>
             <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
           </select></td>
+          </tr>
+        <tr>
           <td> <label>Data:</label></td>
-          <td><input type="date"></td>
+          <td><input type="date" formControlName="date"></td>
         </tr>
       </table>
       <br/>

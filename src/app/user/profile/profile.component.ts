@@ -13,13 +13,13 @@ export class ProfileComponent implements OnInit {
 
   user: User = {
     id: 1,
-    login: "login",
-    email: "user@user.com",
+    login: "jan_k",
+    email: "jan_k@gmail.com",
     password: "passwd",
-    firstName: "John",
-    lastName: "Doe",
-    city: "City",
-    bday: new Date('1970-01-01T00:00:00Z')
+    firstName: "Jan",
+    lastName: "Kowalski",
+    city: "Lublin",
+    bday: new Date('1995-01-01T00:00:00Z')
   };
 
   constructor(private route: ActivatedRoute) { }

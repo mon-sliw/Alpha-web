@@ -3,6 +3,7 @@ import {Activity} from '../Activity';
 import {ActivatedRoute} from '@angular/router';
 import {User} from '../../user/User';
 import {Category} from '../../admin/Category';
+import {UserService} from '../../user/user.service';
 
 @Component({
   selector: 'app-activity-details',
@@ -15,7 +16,7 @@ export class ActivityDetailsComponent implements OnInit {
   id: string;
   members: User[];
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, protected user: UserService) {
   }
 
   ngOnInit() {
@@ -29,7 +30,7 @@ export class ActivityDetailsComponent implements OnInit {
       author: new User(),
       category: new Category(),
       city: 'Lublin',
-      date: new Date('2018-12-12'),
+      date: new Date('2018-12-12T14:30:00'),
       placeId: '',
       members: []
     };
@@ -41,7 +42,7 @@ export class ActivityDetailsComponent implements OnInit {
         lastName:'Kowalski',
         password: 'admin',
         email: 'admin@admin.com',
-        bday: new Date('1970-01-01' + 'T00:00:00Z'),
+        bday: new Date('1996-01-01' + 'T00:00:00Z'),
         city: 'Lublin'
       },
       {
@@ -49,10 +50,10 @@ export class ActivityDetailsComponent implements OnInit {
         login: "john_d",
         email: "user@user.com",
         password: "passwd",
-        firstName: "John",
+        firstName: "Ania",
         lastName: "Doe",
         city: "City",
-        bday: new Date("1999-09-19" + 'T00:00:00Z')
+        bday: new Date("1995-09-19" + 'T00:00:00Z')
       }
     ]
     //todo http
