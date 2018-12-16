@@ -13,6 +13,7 @@ import {UserDeletedComponent} from './user-deleted/user-deleted.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {PasswordEditComponent} from './password-edit/password-edit.component';
+import { ForgotPasswordOkComponent } from './forgot-password-ok/forgot-password-ok.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import {PasswordEditComponent} from './password-edit/password-edit.component';
     LogoutComponent,
     UserDeletedComponent,
     PasswordEditComponent,
+    ForgotPasswordOkComponent,
   ]
 })
 export class UserModule {

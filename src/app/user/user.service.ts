@@ -86,7 +86,8 @@ export class UserService {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${authToken}`
-        })};
+        })
+      };
       return this.http.post(this.myHttp.URL + '/users',
         {
           'login': login,
@@ -100,10 +101,35 @@ export class UserService {
     });
   }
 
-  changePassword(oldPassword: string, newPassword: string){
-    return this.http.post(this.myHttp.URL+'/account/change-password',
-      {'currentPassword': oldPassword,
-      'newPassword': newPassword},
+  changePassword(oldPassword: string, newPassword: string) {
+    return this.http.post(this.myHttp.URL + '/account/change-password',
+      {
+        'currentPassword': oldPassword,
+        'newPassword': newPassword
+      },
+      this.myHttp.getHttpOptions());
+  }
+
+  updateProfile(id: number, login: string, email: string, firstName: string, lastName: string, city: string, bday: Date) {
+    return this.http.put(this.myHttp.URL + '/users',
+      {
+        'id': id,
+        'login': login,
+        'city': city,
+        'email': email,
+        'active': true,
+        'firstName': firstName,
+        'lastName': lastName,
+        'bday': bday.toISOString(),
+        'authorities': ['ROLE_USER']
+      },
+      this.myHttp.getHttpOptions()
+    );
+  }
+
+  forgotPassword(email: string){
+    return this.http.post(this.myHttp.URL+'/account/reset-password/init',
+      {'email': email},
       this.myHttp.getHttpOptions());
   }
 }

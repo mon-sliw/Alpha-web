@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {CanComponentDeactivate} from '../../can-deactivate.guard';
 import {DialogService} from '../../dialog.service';
 import {Observable} from 'rxjs';
+import {UserService} from '../user.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -30,9 +31,6 @@ export class EditProfileComponent implements OnInit, CanComponentDeactivate {
   form = this.fb.group({
     login: [this.user.login, [Validators.required]],
     email: [this.user.email, [Validators.required, Validators.email]],
-    oldPassword: ['', []],
-    newPassword: ['', []],
-    repeatPassword: ['', []],
     firstName: [this.user.firstName, [Validators.required]],
     lastName: [this.user.lastName, []],
     city: [this.user.city, []],
@@ -40,7 +38,7 @@ export class EditProfileComponent implements OnInit, CanComponentDeactivate {
   });
 
 
-  constructor(private fb: FormBuilder, private router: Router, private dialog: DialogService) {
+  constructor(private fb: FormBuilder, private router: Router, private dialog: DialogService, private userService: UserService) {
   }
 
   ngOnInit() {
@@ -51,18 +49,14 @@ export class EditProfileComponent implements OnInit, CanComponentDeactivate {
 
   save() {
     this.user.email = this.form.get('email').value;
-    this.user.password = this.form.get('password').value;
     this.user.firstName = this.form.get('firstName').value;
     this.user.lastName = this.form.get('lastName').value;
     this.user.city = this.form.get('city').value;
     this.user.bday = new Date(this.form.get('bday').value);
 
-    //TODO http
-    this.router.navigate(['/profile']);
-  }
-
-  changePassword() {
-      //todo http
+    this.userService.updateProfile(this.user.id, this.user.login, this.user.email, this.user.firstName, this.user.lastName, this.user.city, this.user.bday).subscribe(() => {
+      this.router.navigate(['/profile']);
+    });
   }
 
   canDeactivate(): Observable<boolean> | boolean {
