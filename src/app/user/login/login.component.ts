@@ -38,27 +38,40 @@ export class LoginComponent implements OnInit {
     console.info('login: ' + this.login + ', password: ' + this.password);
 
     this.user.login(this.login, this.password).subscribe((res: any) => {
+
       if (res) {
         console.info('http sukces');
         localStorage.setItem('auth_token', res.id_token);
         localStorage.setItem('login', this.login);
-        localStorage.setItem('admin', 'true');  //todo zmień
         this.user.setLoggedInTrue();
         this.loginOK = this.user.isLoggedIn();
         console.info('loginOK: ' + this.loginOK);
+
         this.user.getIDFromLogin(this.login).subscribe(res => {
           let id = res.toString();
           localStorage.setItem('id', id);
-          if (this.redirected) {
-            this.router.navigate([this.url]);
-          } else if (this.user.isAdmin()) {
-            this.router.navigate(['/admin']);
-          } else {
-            this.router.navigate(['']);
-          }
+          console.info("id ok: "+ id);
+
+          this.user.checkIfAdmin(this.login).subscribe(res => {
+            console.info("if admin");
+            if (res.toString().includes("true")){
+              localStorage.setItem('admin', 'true');
+              console.info("admin true");
+            } else {console.info("not admin")}
+
+
+            if (this.redirected) {
+              this.router.navigate([this.url]);
+            } else if (this.user.isAdmin()) {
+              this.router.navigate(['/admin']);
+            } else {
+              this.router.navigate(['']);
+            }
+           });
         });
+
       }
-      return res;
+
     });
   }
 

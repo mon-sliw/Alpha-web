@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {MyHttpService} from '../my-http.service';
 import {Observable} from 'rxjs';
+import {User} from './User';
+import {Router} from '@angular/router';
 
 
 @Injectable({
@@ -13,7 +15,7 @@ export class UserService {
   redirectURL = '';
   redirected = false;
 
-  constructor(private http: HttpClient, private myHttp: MyHttpService) {
+  constructor(private http: HttpClient, private myHttp: MyHttpService, private router: Router) {
     this.loggedIn = !!localStorage.getItem('auth_token');
   }
 
@@ -67,15 +69,14 @@ export class UserService {
   }
 
   getIDFromLogin(login: string) {
-    return this.http.post(
+    return this.http.get(
       this.myHttp.URL + '/users/get/id/' + login,
-      {'login': login},
       this.myHttp.getHttpOptions());
   }
 
   register(login: string, email: string, firstName: string, lastName: string, bday: Date, city: string) {
     this.http.post(
-      '/api/authenticate',
+      this.myHttp.URL + '/authenticate',
       {
         'username': 'userlog',
         'password': 'admin'
@@ -88,16 +89,19 @@ export class UserService {
           'Authorization': `Bearer ${authToken}`
         })
       };
-      return this.http.post(this.myHttp.URL + '/users',
+      this.http.post(this.myHttp.URL + '/users',
         {
           'login': login,
           'firstName': firstName,
           'lastName': lastName,
           'email': email,
-          //todo bday i city
-          'authorities': ['ROLE_USER']
+          'city': city,
+          'bday': bday,
+         // 'authorities': ['ROLE_USER']
         },
-        httpOptions);
+        httpOptions).subscribe(() => {
+        this.router.navigate(['/register-ok']);
+      });
     });
   }
 
@@ -110,7 +114,7 @@ export class UserService {
       this.myHttp.getHttpOptions());
   }
 
-  updateProfile(id: number, login: string, email: string, firstName: string, lastName: string, city: string, bday: Date) {
+  updateProfile(id: number, login: string, email: string, firstName: string, lastName: string, city: string, bday: Date, authorities) {
     return this.http.put(this.myHttp.URL + '/users',
       {
         'id': id,
@@ -121,15 +125,31 @@ export class UserService {
         'firstName': firstName,
         'lastName': lastName,
         'bday': bday.toISOString(),
-        'authorities': ['ROLE_USER']
+        'authorities': authorities
+        //'authorities': ['ROLE_USER']
       },
       this.myHttp.getHttpOptions()
     );
   }
 
-  forgotPassword(email: string){
-    return this.http.post(this.myHttp.URL+'/account/reset-password/init',
+  forgotPassword(email: string) {
+    return this.http.post(this.myHttp.URL + '/account/reset-password/init',
       {'email': email},
+      this.myHttp.getHttpOptions());
+  }
+
+  getUser(login: string): Observable<User> {
+    return this.http.get<User>(this.myHttp.URL + '/users/' + login,
+      this.myHttp.getHttpOptions());
+  }
+
+  deleteUser(login: string) {
+    return this.http.delete(this.myHttp.URL + '/deactivate/' + login,
+      this.myHttp.getHttpOptions());
+  }
+
+  checkIfAdmin(login: string) {
+    return this.http.get(this.myHttp.URL + '/users/check/' + login,
       this.myHttp.getHttpOptions());
   }
 }

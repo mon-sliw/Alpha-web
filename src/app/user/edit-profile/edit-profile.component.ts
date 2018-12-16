@@ -17,7 +17,7 @@ export class EditProfileComponent implements OnInit, CanComponentDeactivate {
   login: string;
   changed = false; //todo sprawdź
 
-  user: User = {
+  user: User /*= {
     id: 1,
     login: 'login',
     email: 'user@user.com',
@@ -26,15 +26,15 @@ export class EditProfileComponent implements OnInit, CanComponentDeactivate {
     lastName: 'Doe',
     city: 'City',
     bday: new Date('1970-01-01T12:00:00')
-  };
+  }*/;
 
   form = this.fb.group({
-    login: [this.user.login, [Validators.required]],
-    email: [this.user.email, [Validators.required, Validators.email]],
-    firstName: [this.user.firstName, [Validators.required]],
-    lastName: [this.user.lastName, []],
-    city: [this.user.city, []],
-    bday: [this.user.bday.toISOString().substr(0, 10), [Validators.required]]
+    login: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
+    firstName: ['', [Validators.required]],
+    lastName: ['', []],
+    city: ['', []],
+    bday: ['', [Validators.required]]
   });
 
 
@@ -42,9 +42,18 @@ export class EditProfileComponent implements OnInit, CanComponentDeactivate {
   }
 
   ngOnInit() {
-    console.info('bday: ' + this.user.bday.toLocaleDateString());
-    this.login = localStorage.getItem('login');
-    //TODO http user
+    // console.info('bday: ' + this.user.bday.toLocaleDateString());
+    this.login = this.userService.getLogin();
+    this.userService.getUser(this.login).subscribe((user)=>{
+      this.user = user;
+      this.user.bday = new Date(user.bday);
+      this.form.get('login').setValue(this.user.login);
+      this.form.get('email').setValue(this.user.email);
+      this.form.get('firstName').setValue(this.user.firstName);
+      this.form.get('lastName').setValue(this.user.lastName);
+      this.form.get('city').setValue(this.user.city);
+      this.form.get('bday').setValue(this.user.bday.toISOString().substr(0, 10));
+    })
   }
 
   save() {
@@ -54,7 +63,8 @@ export class EditProfileComponent implements OnInit, CanComponentDeactivate {
     this.user.city = this.form.get('city').value;
     this.user.bday = new Date(this.form.get('bday').value);
 
-    this.userService.updateProfile(this.user.id, this.user.login, this.user.email, this.user.firstName, this.user.lastName, this.user.city, this.user.bday).subscribe(() => {
+    this.userService.updateProfile(this.user.id, this.user.login, this.user.email, this.user.firstName, this.user.lastName, this.user.city, this.user.bday, this.user.authorities).subscribe(() => {
+      console.info("zmieniono dane profilu");
       this.router.navigate(['/profile']);
     });
   }

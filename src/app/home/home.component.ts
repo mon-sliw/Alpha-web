@@ -14,7 +14,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    localStorage.setItem('admin', 'true');  //todo usuń
     this.data = new Date(Date.now());
 
   }

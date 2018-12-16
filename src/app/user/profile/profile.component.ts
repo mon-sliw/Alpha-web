@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from '../User';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {UserService} from '../user.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,8 +11,9 @@ import {ActivatedRoute} from '@angular/router';
 export class ProfileComponent implements OnInit {
 
   login: string;
+  own: boolean = false;
 
-  user: User = {
+  user: User /*= {
     id: 1,
     login: "jan_k",
     email: "jan_k@gmail.com",
@@ -20,22 +22,28 @@ export class ProfileComponent implements OnInit {
     lastName: "Kowalski",
     city: "Lublin",
     bday: new Date('1995-01-01T12:00:00')
-  };
+  }*/;
 
-  constructor(private route: ActivatedRoute) { }
-
-  ngOnInit() {  //todo czy login?
-    this.login = this.route.snapshot.paramMap.get('login');
-     if (this.login == null){
-       this.login = localStorage.getItem('login');
-     }
-    //TODO http
+  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router) {
   }
 
-  delete(){
-    if(confirm("Czy na pewno chcesz usunąć konto?")){
-      //todo http
-      //todo user-deleted
+  ngOnInit() {
+    this.login = this.route.snapshot.paramMap.get('login');
+    if (this.login == null) {
+      this.login = this.userService.getLogin();
+      this.own = true;
+    }
+    this.userService.getUser(this.login).subscribe(user => {
+      this.user = user;
+      this.user.bday = new Date(user.bday);
+    });
+  }
+
+  delete() {
+    if (confirm('Czy na pewno chcesz usunąć konto?')) {
+      this.userService.deleteUser(this.login).subscribe(() => {
+        this.router.navigate(['/user-deleted']);
+      });
     }
   }
 

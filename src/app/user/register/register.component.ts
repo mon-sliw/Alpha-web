@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {User} from '../User';
+import {UserService} from '../user.service';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +21,7 @@ export class RegisterComponent implements OnInit {
   });
   user: User;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private userService: UserService) {
   }
 
   ngOnInit() {
@@ -29,15 +30,14 @@ export class RegisterComponent implements OnInit {
 
   submit() {
     console.info('submit');
-    this.user.login = this.form.get('login').value;
-    this.user.email = this.form.get('email').value;
-    this.user.firstName = this.form.get('firstName').value;
-    this.user.lastName = this.form.get('lastName').value;
-    this.user.city = this.form.get('city').value;
-    this.user.bday = new Date(this.form.get('bday').value + 'T12:00:00');
+    const login = this.form.get('login').value;
+    const email = this.form.get('email').value;
+    const firstName = this.form.get('firstName').value;
+    const lastName = this.form.get('lastName').value;
+    const city = this.form.get('city').value;
+    const bday = new Date(this.form.get('bday').value + 'T12:00:00');
 
-    //TODO http
-    //TODO register-ok
+    this.userService.register(login, email, firstName, lastName, bday, city);
   }
 
 }

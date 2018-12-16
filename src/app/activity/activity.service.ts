@@ -16,7 +16,7 @@ export class ActivityService {
   add(name: string, description: string, categoryId: string, datetime: Date, city: string, placeId: string): Observable<Activity> {
     const login = localStorage.getItem('login');
     return this.http.post<Activity>(
-      this.myHttp.URL + '/events',
+      this.myHttp.URL + '/event',
       {
         'name': name,
         'city': city,

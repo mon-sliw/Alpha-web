@@ -1,10 +1,10 @@
-<div class="all">
+<div class="all" *ngIf="this.user">
   <table>
     <tr>
       <th>Login:</th>
       <td>{{user.login}}</td>
     </tr>
-    <tr>
+    <tr *ngIf="own">
       <th>Email:</th>
       <td>{{user.email}}</td>
     </tr>
@@ -12,7 +12,7 @@
       <th>Imię:</th>
       <td>{{user.firstName}}</td>
     </tr>
-    <tr>
+    <tr *ngIf="own">
       <th>Nazwisko:</th>
       <td>{{user.lastName}}</td>
     </tr>
@@ -25,7 +25,7 @@
       <td>{{user.bday.toLocaleDateString()}}</td>
     </tr>
   </table>
-  <div class="all">
+  <div class="all" *ngIf="own">
     <button class="left" routerLink="/profile-edit">Edytuj</button>
     <button class="left" routerLink="/password-edit">Zmień hasło</button>
     <button class="left" (click)="delete()">Usuń</button>

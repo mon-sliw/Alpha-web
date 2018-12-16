@@ -9,7 +9,7 @@
       <fa-icon [icon]="faSearch"></fa-icon>
     </a>
   </li>
-  <li>
+  <li *ngIf="this.user.isLoggedIn()">
     <a routerLink="/add-activity" >
       <fa-icon [icon]="faPlus"></fa-icon>
     </a>
