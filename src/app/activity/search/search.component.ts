@@ -1,4 +1,5 @@
 /// <reference types="@types/googlemaps" />
+
 import {Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {Activity} from '../Activity';
@@ -7,6 +8,7 @@ import {Category} from '../../admin/Category';
 import {User} from '../../user/User';
 import {ActivityService} from '../activity.service';
 import {MapsAPILoader} from '@agm/core';
+import {forEach} from '@angular/router/src/utils/collection';
 
 // import {} from 'googlemaps';
 
@@ -29,6 +31,9 @@ export class SearchComponent implements OnInit {
 
   activities: Activity[];
   searchDone = false;
+
+  city: string = '';
+  placeID: string = '';
 
   @ViewChild('somethingElse')
   public searchElementRef: ElementRef;
@@ -57,9 +62,28 @@ export class SearchComponent implements OnInit {
       autocomplete.addListener('place_changed', () => {
         this.ngZone.run(() => {
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-          console.info('placeID: ' + place.id);
-          console.info('Address components: ' + place.address_components);
 
+          this.placeID = place.place_id;
+          let locality = '';
+          let administrative_area_level_2 = '';
+          let administrative_area_level_1 = '';
+          let country = '';
+
+          for (let i = 0; i < place.address_components.length; i++) {
+            if (place.address_components[i].types.includes('locality')) {
+              locality = place.address_components[i].long_name;
+            }
+            if (place.address_components[i].types.includes('administrative_area_level_2')) {
+              administrative_area_level_2 = place.address_components[i].long_name;
+            }
+            if (place.address_components[i].types.includes('administrative_area_level_1')) {
+              administrative_area_level_1 = place.address_components[i].long_name;
+            }
+            if (place.address_components[i].types.includes('country')) {
+              country = place.address_components[i].long_name;
+            }
+          }
+          this.city = locality+' '+administrative_area_level_2+' '+administrative_area_level_1+' '+country;
         });
       });
     });
