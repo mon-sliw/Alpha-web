@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {UserService} from '../user.service';
 
 @Component({
   selector: 'app-password-edit',
@@ -9,28 +10,34 @@ import {Router} from '@angular/router';
 })
 export class PasswordEditComponent implements OnInit {
 
+  passwordPattern: string = '^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()-_=+?.,]).{6,25}$';
   form = this.fb.group({
     oldPassword: ['', [Validators.required]],
-    newPassword: ['', [Validators.required]],
-    repeatPassword: ['', [Validators.required]]
+    newPassword: ['', [Validators.required, Validators.pattern(this.passwordPattern)]],
+    repeatPassword: ['', [Validators.required, Validators.pattern(this.passwordPattern)]]
   });
 
   passDiff: boolean = false;
+  error = false;
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(private fb: FormBuilder, private router: Router, private user: UserService) {
+  }
 
   ngOnInit() {
   }
 
-  save(){
+  save() {
     let oldP = this.form.get('oldPassword').value;
     let newP = this.form.get('newPassword').value;
     let repeatP = this.form.get('repeatPassword').value;
-    if(newP===repeatP) {
+    if (newP === repeatP) {
       this.passDiff = false;
-      //todo http
-      this.router.navigate(['/profile']);
-    }else {
+      this.user.changePassword(oldP, newP).subscribe(() => {
+        this.router.navigate(['/profile']);
+      }, () => {
+        this.error = true;
+      });
+    } else {
       this.passDiff = true;
     }
   }

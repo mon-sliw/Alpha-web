@@ -100,4 +100,10 @@ export class UserService {
     });
   }
 
+  changePassword(oldPassword: string, newPassword: string){
+    return this.http.post(this.myHttp.URL+'/account/change-password',
+      {'currentPassword': oldPassword,
+      'newPassword': newPassword},
+      this.myHttp.getHttpOptions());
+  }
 }
