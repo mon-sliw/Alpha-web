@@ -27,32 +27,6 @@
         </td>
       </tr>
       <tr>
-        <td><label for="password">Hasło*</label></td>
-        <td><input type="password" id="password" formControlName="password" autocomplete="new-password"></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>
-          <div class="validationAlert" *ngIf="!form.controls['password'].valid && form.controls['password'].touched">
-            password
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td><label for="repeatPassword">Powtórz hasło*</label></td>
-        <td><input type="password" id="repeatPassword" formControlName="repeatPassword" autocomplete="new-password">
-        </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>
-          <div class="validationAlert"
-               *ngIf="!form.controls['repeatPassword'].valid && form.controls['repeatPassword'].touched">
-            repeatPassword
-          </div>
-        </td>
-      </tr>
-      <tr>
         <td><label for="firstName">Imię*</label></td>
         <td><input type="text" id="firstName" formControlName="firstName" autocomplete="given-name"></td>
       </tr>
@@ -89,8 +63,8 @@
         </td>
       </tr>
       <tr>
-        <td><label for="dateOfBirth">Data urodzenia*</label></td>
-        <td><input type="date" id="dateOfBirth" formControlName="dateOfBirth" autocomplete="bday" min="1900-01-01"
+        <td><label for="bday">Data urodzenia*</label></td>
+        <td><input type="date" id="bday" formControlName="bday" autocomplete="bday" min="1900-01-01"
                    max="2005-12-31"></td>
       </tr>
       <tr>

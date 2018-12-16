@@ -2,6 +2,18 @@
   <form [formGroup]="form" (ngSubmit)="save()">
     <table>
       <tr>
+        <td><label for="login">Login</label></td>
+        <td><input type="text" id="login" formControlName="login" autocomplete="username"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div class="validationAlert" *ngIf="!form.controls['login'].valid && form.controls['login'].touched">
+            login
+          </div>
+        </td>
+      </tr>
+      <tr>
         <td><label for="email">Email</label></td>
         <td><input type="email" id="email" formControlName="email" autocomplete="email"></td>
       </tr>
@@ -13,59 +25,22 @@
           </div>
         </td>
       </tr>
+
       <tr>
-        <td><label for="oldPassword">Stare hasło</label></td>
-        <td><input type="password" id="oldPassword" formControlName="oldPassword" autocomplete="current-password"></td>
+        <td><label for="firsName">Imię</label></td>
+        <td><input type="text" id="firsName" formControlName="firstName" autocomplete="given-name"></td>
       </tr>
       <tr>
         <td></td>
         <td>
-          <div class="validationAlert" *ngIf="!form.controls['oldPassword'].valid && form.controls['oldPassword'].touched">
-            Podaj stare hasło.
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td><label for="newPassword">Nowe hasło</label></td>
-        <td><input type="password" id="newPassword" formControlName="newPassword" autocomplete="new-password" ></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>
-          <div class="validationAlert" *ngIf="!form.controls['newPassword'].valid && form.controls['newPassword'].touched">
-            Podaj nowe hasło.
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td><label for="repeatPassword">Powtórz hasło</label></td>
-        <td><input type="password" id="repeatPassword" formControlName="repeatPassword" autocomplete="new-password">
-        </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>
-          <div class="validationAlert"
-               *ngIf="!form.controls['repeatPassword'].valid && form.controls['repeatPassword'].touched">
-            Powtórz nowe hasło.
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td><label for="name">Imię</label></td>
-        <td><input type="text" id="name" formControlName="firstName" autocomplete="given-firstName"></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>
-          <div class="validationAlert" *ngIf="!form.controls['name'].valid && form.controls['name'].touched">
+          <div class="validationAlert" *ngIf="!form.controls['firstName'].valid && form.controls['firstName'].touched">
             firstName
           </div>
         </td>
       </tr>
       <tr>
-        <td><label for="surname">Nazwisko</label></td>
-        <td><input type="text" id="surname" formControlName="lastName" autocomplete="family-firstName"></td>
+        <td><label for="lastName">Nazwisko</label></td>
+        <td><input type="text" id="lastName" formControlName="lastName" autocomplete="family-name"></td>
       </tr>
       <tr>
         <td></td>

@@ -21,7 +21,7 @@
       <tr>
         <td></td>
         <td>
-          <div class="validationAlert" *ngIf="false"> <!-- todo warunek -->
+          <div class="validationAlert" *ngIf="!form.controls['place'].valid && form.controls['place'].touched">
             Musisz podać miejsce wydarzenia.
           </div>
         </td>

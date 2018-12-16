@@ -42,7 +42,7 @@ export class ActivityDetailsComponent implements OnInit {
         lastName:'Kowalski',
         password: 'admin',
         email: 'admin@admin.com',
-        bday: new Date('1996-01-01' + 'T00:00:00Z'),
+        bday: new Date('1996-01-01' + 'T12:00:00'),
         city: 'Lublin'
       },
       {
@@ -53,7 +53,7 @@ export class ActivityDetailsComponent implements OnInit {
         firstName: "Ania",
         lastName: "Doe",
         city: "City",
-        bday: new Date("1995-09-19" + 'T00:00:00Z')
+        bday: new Date("1995-09-19" + 'T12:00:00')
       }
     ]
     //todo http

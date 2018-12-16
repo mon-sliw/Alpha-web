@@ -10,6 +10,7 @@ import {LogoutComponent} from './logout/logout.component';
 import {UserDeletedComponent} from './user-deleted/user-deleted.component';
 import {UserGuard} from '../auth/user.guard';
 import {CanDeactivateGuard} from '../can-deactivate.guard';
+import {PasswordEditComponent} from './password-edit/password-edit.component';
 
 const routes: Routes = [
   {path: 'login',component: LoginComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'logout', component: LogoutComponent},
   {path: 'user-deleted', canActivate: [UserGuard], component: UserDeletedComponent},
+  {path: 'password-edit', canActivate: [UserGuard], component: PasswordEditComponent}
 ];
 
 @NgModule({

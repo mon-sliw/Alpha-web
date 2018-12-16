@@ -24,19 +24,19 @@ export class EditProfileComponent implements OnInit, CanComponentDeactivate {
     firstName: 'John',
     lastName: 'Doe',
     city: 'City',
-    bday: new Date('1970-01-01T00:00:00Z')
-    //1970-01-01T00:00:00ZZ
+    bday: new Date('1970-01-01T12:00:00')
   };
 
   form = this.fb.group({
+    login: [this.user.login, [Validators.required]],
     email: [this.user.email, [Validators.required, Validators.email]],
     oldPassword: ['', []],
     newPassword: ['', []],
     repeatPassword: ['', []],
-    name: [this.user.firstName, [Validators.required]],
-    surname: [this.user.lastName, []],
+    firstName: [this.user.firstName, [Validators.required]],
+    lastName: [this.user.lastName, []],
     city: [this.user.city, []],
-    bday: [this.user.bday.toDateString(), [Validators.required]]
+    bday: [this.user.bday.toISOString().substr(0, 10), [Validators.required]]
   });
 
 
@@ -52,7 +52,7 @@ export class EditProfileComponent implements OnInit, CanComponentDeactivate {
   save() {
     this.user.email = this.form.get('email').value;
     this.user.password = this.form.get('password').value;
-    this.user.firstName = this.form.get('name').value;
+    this.user.firstName = this.form.get('firstName').value;
     this.user.lastName = this.form.get('lastName').value;
     this.user.city = this.form.get('city').value;
     this.user.bday = new Date(this.form.get('bday').value);
@@ -62,7 +62,7 @@ export class EditProfileComponent implements OnInit, CanComponentDeactivate {
   }
 
   changePassword() {
-
+      //todo http
   }
 
   canDeactivate(): Observable<boolean> | boolean {

@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {MyHttpService} from '../my-http.service';
 import {Observable} from 'rxjs';
 import {Category} from '../admin/Category';
+import {Activity} from './Activity';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,9 @@ export class ActivityService {
   constructor(private http: HttpClient, private myHttp: MyHttpService) {
   }
 
-  add(name: string, description: string, categoryId: string, datetime: Date, city: string, placeId: string) {
+  add(name: string, description: string, categoryId: string, datetime: Date, city: string, placeId: string): Observable<Activity> {
     const login = localStorage.getItem('login');
-    return this.http.post(
+    return this.http.post<Activity>(
       this.myHttp.URL + '/events',
       {
         'name': name,
@@ -55,6 +56,15 @@ export class ActivityService {
   deleteCategory(id: string) {
     return this.http.delete(
       this.myHttp.URL + '/category/' + id,
+      this.myHttp.getHttpOptions());
+  }
+
+  addMember(activity_id: number, user_id: string) {
+    return this.http.post(this.myHttp.URL + '/event/members',
+      {
+        'eventId': activity_id,
+        'userId': user_id
+      },
       this.myHttp.getHttpOptions());
   }
 }

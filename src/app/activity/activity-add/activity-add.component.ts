@@ -5,6 +5,7 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {ActivityService} from '../activity.service';
 import {Category} from '../../admin/Category';
 import {MapsAPILoader} from '@agm/core';
+import {UserService} from '../../user/user.service';
 
 @Component({
   selector: 'app-activity-add',
@@ -18,7 +19,7 @@ export class ActivityAddComponent implements OnInit {
       description: ['', [Validators.required]],
       category: ['', [Validators.required, Validators.minLength(1)]],
       place: ['', [Validators.required]],
-      datetime: [(new Date(Date.now()).toISOString()).substr(0, 16), [Validators.required]]
+      datetime: [(new Date(Date.now() + 3600000).toISOString()).substr(0, 16), [Validators.required]]
     }
   );
 
@@ -32,6 +33,7 @@ export class ActivityAddComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private activityService: ActivityService,
+              private user: UserService,
               private mapsAPILoader: MapsAPILoader,
               private ngZone: NgZone) {
   }
@@ -75,7 +77,7 @@ export class ActivityAddComponent implements OnInit {
             }
           }
           this.city = locality + ' ' + administrative_area_level_2 + ' ' + administrative_area_level_1 + ' ' + country;
-          console.info('city: '+this.city);
+          console.info('city: ' + this.city);
         });
       });
     });
@@ -86,9 +88,9 @@ export class ActivityAddComponent implements OnInit {
     const description = this.form.get('description').value;
     const category = this.form.get('category').value;
     const datetime = new Date(this.form.get('datetime').value);
-    //todo google API
-    const placeId = '';
-    const city = '';
-    this.activityService.add(name, description, category, datetime, city, placeId);
+    this.activityService.add(name, description, category, datetime, this.city, this.placeID).subscribe(
+      activity => {
+        this.activityService.addMember(activity.id, this.user.getID());
+      });
   }
 }

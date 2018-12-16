@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { UserRoutingModule } from './user-routing.module';
+import {UserRoutingModule} from './user-routing.module';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {ProfileComponent} from './profile/profile.component';
@@ -12,6 +12,7 @@ import {LogoutComponent} from './logout/logout.component';
 import {UserDeletedComponent} from './user-deleted/user-deleted.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {PasswordEditComponent} from './password-edit/password-edit.component';
 
 @NgModule({
   imports: [
@@ -30,6 +31,8 @@ import {HttpClientModule} from '@angular/common/http';
     ForgotPasswordComponent,
     LogoutComponent,
     UserDeletedComponent,
+    PasswordEditComponent,
   ]
 })
-export class UserModule { }
+export class UserModule {
+}

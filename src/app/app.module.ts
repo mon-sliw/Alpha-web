@@ -30,8 +30,8 @@ import {AgmCoreModule} from '@agm/core';
     AdminModule,
     ActivityModule,
     AgmCoreModule.forRoot({
-      apiKey: "AIzaSyB4ELeMqL3I8h0qEv5PWlzDecGIAvz2oO0",
-      libraries: ["places"]
+      apiKey: 'AIzaSyB4ELeMqL3I8h0qEv5PWlzDecGIAvz2oO0',
+      libraries: ['places']
     }),
     AppRoutingModule
   ],

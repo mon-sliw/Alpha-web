@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit {
   redirected = false;
   url = '';
 
-  constructor(private fb: FormBuilder, protected user: UserService, private router: Router) { }
+  constructor(private fb: FormBuilder, protected user: UserService, private router: Router) {
+  }
 
   ngOnInit() {
     this.url = this.user.redirectURL;
@@ -30,11 +31,11 @@ export class LoginComponent implements OnInit {
     this.user.redirected = false;
   }
 
-  logIn(){
+  logIn() {
     this.login = this.form.get('login').value;
     this.password = this.form.get('password').value;
 
-    console.info('login: '+this.login+', password: '+this.password);
+    console.info('login: ' + this.login + ', password: ' + this.password);
 
     this.user.login(this.login, this.password).subscribe((res: any) => {
       if (res) {
@@ -44,14 +45,18 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('admin', 'true');  //todo zmień
         this.user.setLoggedInTrue();
         this.loginOK = this.user.isLoggedIn();
-        console.info('loginOK: '+this.loginOK);
-        if (this.redirected) {
-          this.router.navigate([this.url]);
-        } else if(this.user.isAdmin()){
-          this.router.navigate(['/admin']);
-        } else {
-          this.router.navigate(['']);
-        }
+        console.info('loginOK: ' + this.loginOK);
+        this.user.getIDFromLogin(this.login).subscribe(res => {
+          let id = res.toString();
+          localStorage.setItem('id', id);
+          if (this.redirected) {
+            this.router.navigate([this.url]);
+          } else if (this.user.isAdmin()) {
+            this.router.navigate(['/admin']);
+          } else {
+            this.router.navigate(['']);
+          }
+        });
       }
       return res;
     });

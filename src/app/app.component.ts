@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {faCog, faHome, faPowerOff, faSearch, faUser} from '@fortawesome/free-solid-svg-icons';
+import {faCog, faHome, faPlus, faPowerOff, faSearch, faUser} from '@fortawesome/free-solid-svg-icons';
 import {UserService} from './user/user.service';
 import {Router} from '@angular/router';
 
@@ -15,6 +15,7 @@ export class AppComponent {
   faPowerOff = faPowerOff;
   faSearch = faSearch;
   faCog = faCog;
+  faPlus = faPlus;
 
   constructor(protected user: UserService, private router: Router) {
   }
@@ -24,8 +25,9 @@ export class AppComponent {
       this.user.logout().subscribe((res: any) => {
         localStorage.removeItem('auth_token');
         localStorage.removeItem('login');
-        if(!!localStorage.getItem('admin'))
-        localStorage.removeItem('admin');
+        localStorage.removeItem('id');
+        if (!!localStorage.getItem('admin'))
+          localStorage.removeItem('admin');
         this.user.setLoggedInFalse();
         this.router.navigate(['/logout']);
       });

@@ -22,7 +22,7 @@ export class EditAdminComponent implements OnInit {
     lastName:'Kowalski',
     password: 'admin',
     email: 'admin@admin.com',
-    bday: new Date('1970-01-01T00:00:00Z'),
+    bday: new Date('1970-01-01T12:00:00'),
     city: 'Lublin'
   };
 
@@ -53,7 +53,7 @@ export class EditAdminComponent implements OnInit {
     this.user.firstName = this.form.get('name').value;
     this.user.lastName = this.form.get('lastName').value;
     this.user.city = this.form.get('city').value;
-    this.user.bday = new Date(this.form.get('bday').value + 'T00:00:00Z');
+    this.user.bday = new Date(this.form.get('bday').value + 'T12:00:00');
 
     //TODO http
     this.router.navigate(['/admin/admins']);
