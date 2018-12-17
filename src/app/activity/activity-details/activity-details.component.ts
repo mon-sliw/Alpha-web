@@ -1,9 +1,12 @@
+/// <reference types="@types/googlemaps" />
+
 import {Component, OnInit} from '@angular/core';
 import {Activity} from '../Activity';
 import {ActivatedRoute} from '@angular/router';
 import {User} from '../../user/User';
-import {Category} from '../../admin/Category';
 import {UserService} from '../../user/user.service';
+import {MapsAPILoader} from '@agm/core';
+import {ActivityService} from '../activity.service';
 
 @Component({
   selector: 'app-activity-details',
@@ -14,50 +17,56 @@ export class ActivityDetailsComponent implements OnInit {
 
   activity: Activity;
   id: string;
+  author: boolean = false;
   members: User[];
+  fullAddress: string = '';
 
-  constructor(private route: ActivatedRoute, protected user: UserService) {
+  constructor(private route: ActivatedRoute,
+              protected user: UserService,
+              private activityService: ActivityService,
+              private mapsAPILoader: MapsAPILoader) {
   }
 
   ngOnInit() {
-
     this.id = this.route.snapshot.paramMap.get('id');
 
-    this.activity = {
-      id: 1,
-      name: 'Zagraj w tenisa',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor, lectus in tincidunt ornare, nunc purus faucibus dui, sed venenatis nibh turpis sed orci. Nunc ac massa dui. Donec feugiat velit ligula, eu ullamcorper lacus placerat sit amet. Suspendisse potenti. Vivamus suscipit justo eu lectus dapibus scelerisque. Donec in turpis et dui consequat vulputate a sit amet magna. Duis vitae vestibulum nulla. Ut sit amet ex rutrum, sollicitudin arcu non, commodo lectus.',
-      author: new User(),
-      category: new Category(),
-      city: 'Lublin',
-      date: new Date('2018-12-12T14:30:00'),
-      placeId: '',
-      members: []
-    };
-    this.members = [
-      {
-        id: 1,
-        login: 'admin',
-        firstName:'Jan',
-        lastName:'Kowalski',
-        password: 'admin',
-        email: 'admin@admin.com',
-        bday: new Date('1996-01-01' + 'T12:00:00'),
-        city: 'Lublin'
-      },
-      {
-        id: 2,
-        login: "john_d",
-        email: "user@user.com",
-        password: "passwd",
-        firstName: "Ania",
-        lastName: "Doe",
-        city: "City",
-        bday: new Date("1995-09-19" + 'T12:00:00')
-      }
-    ]
-    //todo http
-    //todo get author
+    this.activityService.getActivity(this.id).subscribe((activity) => {
+      this.activity = activity;
+      this.activity.date = new Date(activity.date);
+      //todo http get members
+    });
+
+
+    if (this.activity.author == this.user.getID()) {
+      this.author = true;
+    }
+
+    console.info('przed api');
+    let placeId = 'EiRwbGFjIExpdGV3c2tpLCAyMC0wMDEgTHVibGluLCBQb2xhbmQiLiosChQKEgnVHuZHaFciRxE2UZhVYs_YtxIUChIJYUAVHhRXIkcRX-no9nruKFU';  //todo zmień
+    this.mapsAPILoader.load().then(() => {
+      console.info('przed getFull...');
+      let geocoder = new google.maps.Geocoder();
+      console.info('geocoder');
+      geocoder.geocode({'placeId': placeId}, (
+        (results: google.maps.GeocoderResult[], status: google.maps.GeocoderStatus) => {
+          if (status === google.maps.GeocoderStatus.OK) {
+            console.info('status ok');
+            if (results[0]) {
+              console.info('exists');
+              this.fullAddress = results[0].formatted_address;
+              console.info('full: ' + this.fullAddress);
+            }
+          }
+          console.info('end geocode');
+        }));
+    });
   }
 
+  addYourself() {
+    //todo http
+  }
+
+  removeYourself() {
+    //todo http
+  }
 }

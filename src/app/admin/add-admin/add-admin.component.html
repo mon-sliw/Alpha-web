@@ -15,32 +15,6 @@
         </td>
       </tr>
       <tr>
-        <td><label for="password">Hasło</label></td>
-        <td><input type="password" id="password" formControlName="password" autocomplete="new-password"></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>
-          <div class="validationAlert" *ngIf="!form.controls['password'].valid && form.controls['password'].touched">
-            password
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td><label for="repeatPassword">Powtórz hasło</label></td>
-        <td><input type="password" id="repeatPassword" formControlName="repeatPassword" autocomplete="new-password">
-        </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>
-          <div class="validationAlert"
-               *ngIf="!form.controls['repeatPassword'].valid && form.controls['repeatPassword'].touched">
-            repeatPassword
-          </div>
-        </td>
-      </tr>
-      <tr>
         <td><label for="name">Imię</label></td>
         <td><input type="text" id="name" formControlName="firstName" autocomplete="given-firstName"></td>
       </tr>
@@ -97,4 +71,4 @@
     </div>
   </form>
 
-<!--todo dodaj login-->
+<!--todo dodaj login, usuń hasło-->

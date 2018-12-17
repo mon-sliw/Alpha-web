@@ -152,4 +152,8 @@ export class UserService {
     return this.http.get(this.myHttp.URL + '/users/check/' + login,
       this.myHttp.getHttpOptions());
   }
+
+  getAllAdmins(){
+    //todo get all admins
+  }
 }

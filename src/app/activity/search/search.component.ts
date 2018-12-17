@@ -10,8 +10,6 @@ import {ActivityService} from '../activity.service';
 import {MapsAPILoader} from '@agm/core';
 import {forEach} from '@angular/router/src/utils/collection';
 
-// import {} from 'googlemaps';
-
 
 @Component({
   selector: 'app-search',
@@ -64,6 +62,7 @@ export class SearchComponent implements OnInit {
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
 
           this.placeID = place.place_id;
+          console.info('id: '+this.placeID);
           let locality = '';
           let administrative_area_level_2 = '';
           let administrative_area_level_1 = '';
@@ -93,28 +92,7 @@ export class SearchComponent implements OnInit {
   search() {
     //todo http
     this.searchDone = true;
-    this.activities = [{
-      id: 1,
-      name: 'Zagraj w tenisa',
-      author: new User(),
-      category: new Category(),
-      city: 'Lublin',
-      date: new Date('2018-12-12'),
-      description: '',
-      placeId: '',
-      members: []
-    },
-      {
-        id: 2,
-        name: 'Mamma Mia w Multikinie',
-        author: new User(),
-        category: new Category(),
-        city: 'Lublin',
-        date: new Date('2018-12-07'),
-        description: '',
-        placeId: '',
-        members: []
-      }];
+    this.activities = [];
   }
 
 

@@ -23,7 +23,8 @@ export class EditAdminComponent implements OnInit {
     password: 'admin',
     email: 'admin@admin.com',
     bday: new Date('1970-01-01T12:00:00'),
-    city: 'Lublin'
+    city: 'Lublin',
+    authorities: []
   };
 
   form = this.fb.group({
@@ -57,10 +58,6 @@ export class EditAdminComponent implements OnInit {
 
     //TODO http
     this.router.navigate(['/admin/admins']);
-  }
-
-  changePassword() {
-
   }
 
   canDeactivate(): Observable<boolean> | boolean {

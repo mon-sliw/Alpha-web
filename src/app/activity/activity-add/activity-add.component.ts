@@ -49,6 +49,7 @@ export class ActivityAddComponent implements OnInit {
         console.info('got categories');
       });
 
+
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         componentRestrictions: {country: 'pl'}

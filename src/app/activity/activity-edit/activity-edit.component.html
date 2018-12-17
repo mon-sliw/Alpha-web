@@ -1,3 +1,79 @@
-<p>
-  activity-edit works!
-</p>
+<div class="all">
+  <form [formGroup]="form" (ngSubmit)="update()">
+    <table>
+      <tr>
+        <td><label for="name">Nazwa:</label></td>
+        <td><input style="width: 100%" type="text" id="name" formControlName="name" autocomplete="off"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div class="validationAlert" *ngIf="!form.controls['name'].valid && form.controls['name'].touched">
+            Musisz podać nazwę wydarzenia.
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td><label for="place">Miejsce:</label></td>
+        <td><input style="width: 100%" type="text" id="place" #place formControlName="place" autocomplete="off"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div class="validationAlert" *ngIf="!form.controls['place'].valid && form.controls['place'].touched">
+            Musisz podać miejsce wydarzenia.
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td><label for="category">Kategoria</label></td>
+        <td>
+          <select style="width: 100%" id="category" formControlName="category">
+            <option value="">--Wybierz kategorię--</option>
+            <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div class="validationAlert" *ngIf="!form.controls['category'].valid && form.controls['category'].touched">
+            Musisz wybrać kategorię.
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="datetime">Czas:</label></td>
+        <td><input style="width: 100%" type="datetime-local" id="datetime" formControlName="datetime"
+                   autocomplete="off"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div class="validationAlert" *ngIf="!form.controls['datetime'].valid && form.controls['datetime'].touched">
+            Musisz podać datę i godzinę wydarzenia.
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="description">Opis wydarzenia:</label></td>
+        <td><textarea rows="4" cols="50" id="description" formControlName="description" autocomplete="off"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div class="validationAlert"
+               *ngIf="!form.controls['description'].valid && form.controls['description'].touched">
+            Musisz podać opis wydarzenia.
+          </div>
+        </td>
+      </tr>
+    </table>
+    <div class="buttonIn">
+      <button type="submit" [disabled]="!form.valid">Zapisz zmainy</button>
+    </div>
+  </form>
+</div>

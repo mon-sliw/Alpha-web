@@ -10,6 +10,7 @@ export class ActivitiesComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    // todo wszystko
   }
 
 }

@@ -3,7 +3,7 @@
     <table>
       <tr>
         <td><label for="name">Nazwa:</label></td>
-        <td><input type="text" id="name" formControlName="name" autocomplete="off"></td>
+        <td><input style="width: 100%" type="text" id="name" formControlName="name" autocomplete="off"></td>
       </tr>
       <tr>
         <td></td>
@@ -16,7 +16,7 @@
 
       <tr>
         <td><label for="place">Miejsce:</label></td>
-        <td><input type="text" id="place" #place formControlName="place" autocomplete="off" ></td>
+        <td><input style="width: 100%" type="text" id="place" #place formControlName="place" autocomplete="off" ></td>
       </tr>
       <tr>
         <td></td>
@@ -30,7 +30,7 @@
       <tr>
         <td><label for="category">Kategoria</label></td>
         <td>
-          <select id="category" formControlName="category">
+          <select style="width: 100%" id="category" formControlName="category">
             <option value="">--Wybierz kategorię--</option>
             <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
           </select>
@@ -46,7 +46,7 @@
       </tr>
       <tr>
         <td><label for="datetime">Czas:</label></td>
-        <td><input type="datetime-local" id="datetime" formControlName="datetime" autocomplete="off"></td>
+        <td><input style="width: 100%" type="datetime-local" id="datetime" formControlName="datetime" autocomplete="off"></td>
       </tr>
       <tr>
         <td></td>

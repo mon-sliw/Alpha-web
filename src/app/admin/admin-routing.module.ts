@@ -24,7 +24,7 @@ const routes: Routes = [
             path: 'users',
             children: [
               {path: '', component: UsersComponent},
-              {path: 'edit-user/:login', component: EditAdminComponent} //todo
+              {path: 'edit-user/:login', component: EditAdminComponent} //todo canDeactivate
             ]
           },
           {path: 'activities', component: ActivitiesComponent},

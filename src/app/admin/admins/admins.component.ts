@@ -19,16 +19,7 @@ export class AdminsComponent implements OnInit {
   ngOnInit() {
     //todo http
     this.admins = [
-      {
-        id: 1,
-        login: 'admin',
-        firstName:'Jan',
-        lastName:'Kowalski',
-        password: 'admin',
-        email: 'admin@admin.com',
-        bday: new Date('1970-01-01T12:00:00'),
-        city: 'Lublin'
-      }
+
     ];
   }
 

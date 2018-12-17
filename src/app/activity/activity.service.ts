@@ -4,6 +4,7 @@ import {MyHttpService} from '../my-http.service';
 import {Observable} from 'rxjs';
 import {Category} from '../admin/Category';
 import {Activity} from './Activity';
+import {User} from '../user/User';
 
 @Injectable({
   providedIn: 'root'
@@ -67,4 +68,33 @@ export class ActivityService {
       },
       this.myHttp.getHttpOptions());
   }
+
+  getActivity(id: string): Observable<Activity> {
+    return this.http.get<Activity>(this.myHttp.URL + '/event/'+id,
+      this.myHttp.getHttpOptions());
+  }
+
+  getMembers(id: string): Observable<User[]>{
+    return this.http.get<User[]>(this.myHttp.URL+'/', //todo uzupełnij
+      this.myHttp.getHttpOptions());
+  }
+
+  removeMember(activity_id: number, user_id: string){
+    return this.http.delete(this.myHttp.URL+'/',  //todo uzupełnij
+      this.myHttp.getHttpOptions())
+  }
+
+  updateActivity(id: string, name: string, description: string, category: number, datetime: Date, city: string, placeId: string){
+    return this.http.put(
+      this.myHttp.URL + '/event/'+id,
+      {
+        'id': id,
+        'name': name,
+        'city': city,
+        'placeId': placeId,
+        'description': description,
+        'date': datetime.toISOString(),
+        'category': category
+      },
+      this.myHttp.getHttpOptions());  }
 }

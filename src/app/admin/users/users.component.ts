@@ -26,7 +26,8 @@ export class UsersComponent implements OnInit {
         password: 'admin',
         email: 'admin@admin.com',
         bday: new Date('1970-01-01T12:00:00'),
-        city: 'Lublin'
+        city: 'Lublin',
+        authorities: []
       },
       {
         id: 2,
@@ -36,7 +37,8 @@ export class UsersComponent implements OnInit {
         firstName: "Anna",
         lastName: "Nowak",
         city: "City",
-        bday: new Date("1999-09-19" + 'T12:00:00')
+        bday: new Date("1999-09-19" + 'T12:00:00'),
+        authorities: []
       }
     ]
 
