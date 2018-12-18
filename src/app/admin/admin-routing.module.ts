@@ -10,6 +10,7 @@ import {RestrictedComponent} from './restricted/restricted.component';
 import {AddAdminComponent} from './add-admin/add-admin.component';
 import {EditAdminComponent} from './edit-admin/edit-admin.component';
 import {EditUserComponent} from './edit-user/edit-user.component';
+import {EditActivityComponent} from './edit-activity/edit-activity.component';
 
 const routes: Routes = [
   {
@@ -28,7 +29,13 @@ const routes: Routes = [
               {path: 'edit-user/:login', component: EditUserComponent}
             ]
           },
-          {path: 'activities', component: ActivitiesComponent},
+          {
+            path: 'activities',
+            children: [
+              {path: '', component: ActivitiesComponent},
+              {path: 'edit/:id', component: EditActivityComponent}
+            ]
+          },
           {path: 'categories', component: CategoriesComponent},
           {
             path: 'admins',

@@ -1,3 +1,8 @@
 <div class="admin-all">
-<!--todo wszystko-->
+  <ul class="list">
+    <li class="list-item" *ngFor="let activity of activities">
+      <div><div>{{activity.name}} - {{activity.city.split(' ')[0]}} - {{activity.date.toLocaleDateString()}}</div>
+        <button class="right" (click)="edit(activity)"><fa-icon [icon]="faEdit"></fa-icon></button></div>
+    </li>
+  </ul>
 </div>

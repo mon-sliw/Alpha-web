@@ -14,6 +14,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import { AddAdminComponent } from './add-admin/add-admin.component';
 import { EditAdminComponent } from './edit-admin/edit-admin.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { EditActivityComponent } from './edit-activity/edit-activity.component';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     RestrictedComponent,
     AddAdminComponent,
     EditAdminComponent,
-    EditUserComponent
+    EditUserComponent,
+    EditActivityComponent
   ]
 })
 export class AdminModule { }
