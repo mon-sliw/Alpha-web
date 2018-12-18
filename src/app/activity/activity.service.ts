@@ -70,23 +70,23 @@ export class ActivityService {
   }
 
   getActivity(id: string): Observable<Activity> {
-    return this.http.get<Activity>(this.myHttp.URL + '/event/'+id,
+    return this.http.get<Activity>(this.myHttp.URL + '/event/' + id,
       this.myHttp.getHttpOptions());
   }
 
-  getMembers(id: string): Observable<User[]>{
-    return this.http.get<User[]>(this.myHttp.URL+'/', //todo uzupełnij
+  getMembers(id: string): Observable<User[]> {//Observable<User[]>
+    return this.http.get<User[]>(this.myHttp.URL + '/event/members/get/' + id,
       this.myHttp.getHttpOptions());
   }
 
-  removeMember(activity_id: number, user_id: string){
-    return this.http.delete(this.myHttp.URL+'/',  //todo uzupełnij
-      this.myHttp.getHttpOptions())
+  removeMember(activity_id: string, user_id: string) {
+    return this.http.delete(this.myHttp.URL + '/event/members/delete',  //todo uzupełnij
+      this.myHttp.getHttpOptions());
   }
 
-  updateActivity(id: string, name: string, description: string, category: number, datetime: Date, city: string, placeId: string){
+  updateActivity(id: string, name: string, description: string, category: number, datetime: Date, city: string, placeId: string) {
     return this.http.put(
-      this.myHttp.URL + '/event/'+id,
+      this.myHttp.URL + '/event/' + id,
       {
         'id': id,
         'name': name,
@@ -96,5 +96,16 @@ export class ActivityService {
         'date': datetime.toISOString(),
         'category': category
       },
-      this.myHttp.getHttpOptions());  }
+      this.myHttp.getHttpOptions());
+  }
+
+  deleteActivity(id: string) {
+    return this.http.delete(this.myHttp.URL + '/event/' + id,
+      this.myHttp.getHttpOptions());
+  }
+
+  search(searchURL: string): Observable<Activity[]> {
+    return this.http.get<Activity[]>(this.myHttp.URL + '/event/filtered' + searchURL,
+      this.myHttp.getHttpOptions());
+  }
 }

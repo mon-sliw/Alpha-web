@@ -1,4 +1,3 @@
-<!--todo responsywność-->
 <div class="all">
   <div style="background: #B3D9D9; width: fit-content;">
     <form [formGroup]="form" (submit)="search()">
@@ -33,16 +32,13 @@
       </div>
     </form>
   </div>
-
-  <div *ngIf="auto">
-
-  </div>
-
+</div>
+<div class="all">
   <div *ngIf="searchDone" style="margin-top: 3em">
     <ul class="list">
       <li class="list-item" *ngFor="let activity of activities" (click)="details(activity)">
         <div><div>{{activity.name}}</div></div>
-        <span style="margin-left: 1em">{{activity.city}}</span> <span class="right" style="margin-right: 1em">{{activity.date.toLocaleDateString()}}</span>
+        <span style="margin-left: 1em">{{activity.city.split(' ')[0]+', '+activity.city.split(' ')[2]}}</span><div style="display: inline-block; width: 20px"></div><span class="right" style="margin-right: 1em">{{activity.date.toLocaleDateString()}}</span>
       </li>
     </ul>
   </div>

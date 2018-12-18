@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {faEdit} from '@fortawesome/free-solid-svg-icons';
 import {User} from '../../user/User';
 import {Router} from '@angular/router';
+import {UserService} from '../../user/user.service';
 
 @Component({
   selector: 'app-users',
@@ -14,35 +15,12 @@ export class UsersComponent implements OnInit {
 
   users: User[];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
-    this.users = [
-      {
-        id: 1,
-        login: 'admin',
-        firstName:'Jan',
-        lastName:'Kowalski',
-        password: 'admin',
-        email: 'admin@admin.com',
-        bday: new Date('1970-01-01T12:00:00'),
-        city: 'Lublin',
-        authorities: []
-      },
-      {
-        id: 2,
-        login: "john_d",
-        email: "user@user.com",
-        password: "passwd",
-        firstName: "Anna",
-        lastName: "Nowak",
-        city: "City",
-        bday: new Date("1999-09-19" + 'T12:00:00'),
-        authorities: []
-      }
-    ]
-
-    //todo http
+    this.userService.getAllUsers().subscribe((users)=>{
+      this.users = users;
+    })
   }
 
   edit(user: User){

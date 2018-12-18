@@ -13,6 +13,7 @@ import { RestrictedComponent } from './restricted/restricted.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import { AddAdminComponent } from './add-admin/add-admin.component';
 import { EditAdminComponent } from './edit-admin/edit-admin.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { EditAdminComponent } from './edit-admin/edit-admin.component';
     ActivitiesComponent,
     RestrictedComponent,
     AddAdminComponent,
-    EditAdminComponent
+    EditAdminComponent,
+    EditUserComponent
   ]
 })
 export class AdminModule { }

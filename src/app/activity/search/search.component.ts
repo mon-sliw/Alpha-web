@@ -90,11 +90,35 @@ export class SearchComponent implements OnInit {
   }
 
   search() {
-    //todo http
-    this.searchDone = true;
-    this.activities = [];
-  }
+    let searchURL = '';
 
+    let searchWords = this.form.get('searchWords').value;
+    if ( searchWords!= '') {
+      searchURL = '?name='+ searchWords;
+    }
+
+    let category = this.form.get('category').value;
+    if ( category!= '') {
+      if (searchURL == '') searchURL = '?';
+      else searchURL += '&';
+      searchURL += 'categoryId='+category;
+    }
+
+    let citySearch = this.form.get('somethingElse').value;
+    if ( citySearch!= '') {
+      if (searchURL == '') searchURL = '?';
+      else searchURL += '&';
+      searchURL += 'city='+ this.city.split(' ')[0];
+    }
+
+    this.activityService.search(searchURL).subscribe((activities)=>{
+      this.searchDone = true;
+      this.activities = activities;
+      for(let i=0; i<activities.length; i++){
+        this.activities[i].date = new Date(activities[i].date);
+      }
+    });
+  }
 
   details(activity: Activity) {
     const id = activity.id;

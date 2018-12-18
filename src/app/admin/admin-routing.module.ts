@@ -9,6 +9,7 @@ import {AdminGuard} from '../auth/admin.guard';
 import {RestrictedComponent} from './restricted/restricted.component';
 import {AddAdminComponent} from './add-admin/add-admin.component';
 import {EditAdminComponent} from './edit-admin/edit-admin.component';
+import {EditUserComponent} from './edit-user/edit-user.component';
 
 const routes: Routes = [
   {
@@ -24,7 +25,7 @@ const routes: Routes = [
             path: 'users',
             children: [
               {path: '', component: UsersComponent},
-              {path: 'edit-user/:login', component: EditAdminComponent} //todo canDeactivate
+              {path: 'edit-user/:login', component: EditUserComponent}
             ]
           },
           {path: 'activities', component: ActivitiesComponent},

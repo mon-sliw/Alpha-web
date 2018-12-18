@@ -3,15 +3,14 @@ import {User} from '../../user/User';
 import {FormBuilder, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DialogService} from '../../dialog.service';
-import {Observable} from 'rxjs';
 import {UserService} from '../../user/user.service';
 
 @Component({
-  selector: 'app-edit-admin',
-  templateUrl: './edit-admin.component.html',
-  styleUrls: ['./edit-admin.component.css']
+  selector: 'app-edit-user',
+  templateUrl: './edit-user.component.html',
+  styleUrls: ['./edit-user.component.css']
 })
-export class EditAdminComponent implements OnInit {
+export class EditUserComponent implements OnInit {
 
   login: string;
   changed = false; //todo sprawdź
@@ -38,14 +37,14 @@ export class EditAdminComponent implements OnInit {
   ngOnInit() {
     this.login = this.route.snapshot.paramMap.get('login');
     this.userService.getUser(this.login).subscribe(user =>{
-      this.user = user;
-      this.user.bday = new Date(user.bday);
-      this.form.get('login').setValue(this.user.login);
-      this.form.get('email').setValue(this.user.email);
-      this.form.get('firstName').setValue(this.user.firstName);
-      this.form.get('lastName').setValue(this.user.lastName);
-      this.form.get('city').setValue(this.user.city);
-      this.form.get('bday').setValue(this.user.bday.toISOString().substr(0, 10));
+        this.user = user;
+        this.user.bday = new Date(user.bday);
+        this.form.get('login').setValue(this.user.login);
+        this.form.get('email').setValue(this.user.email);
+        this.form.get('firstName').setValue(this.user.firstName);
+        this.form.get('lastName').setValue(this.user.lastName);
+        this.form.get('city').setValue(this.user.city);
+        this.form.get('bday').setValue(this.user.bday.toISOString().substr(0, 10));
       }
     )
   }
@@ -58,16 +57,6 @@ export class EditAdminComponent implements OnInit {
     this.user.bday = new Date(this.form.get('bday').value + 'T12:00:00');
 
     this.userService.updateProfile(this.user.id, this.user.login, this.user.email, this.user.firstName, this.user.lastName, this.user.city, this.user.bday, this.user.authorities).subscribe(()=>{
-      this.router.navigate(['/admin/admins']);
+      this.router.navigate(['/admin/users']);
     });
-  }
-
-  canDeactivate(): Observable<boolean> | boolean {
-    if (!this.changed) {
-      return true;
-    } else {
-      return this.dialog.confirm('Czy chcesz wyjść bez zapisania zmian?');
-    }
-  }
-
 }

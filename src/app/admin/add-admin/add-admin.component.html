@@ -3,6 +3,18 @@
   <form [formGroup]="form" (ngSubmit)="submit()">
     <table>
       <tr>
+        <td><label for="login">Login</label></td>
+        <td><input type="text" id="login" formControlName="login" autocomplete="username"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div class="validationAlert" *ngIf="!form.controls['login'].valid && form.controls['login'].touched">
+            login
+          </div>
+        </td>
+      </tr>
+      <tr>
         <td><label for="email">Email</label></td>
         <td><input type="email" id="email" formControlName="email" autocomplete="email"></td>
       </tr>
@@ -15,20 +27,20 @@
         </td>
       </tr>
       <tr>
-        <td><label for="name">Imię</label></td>
-        <td><input type="text" id="name" formControlName="firstName" autocomplete="given-firstName"></td>
+        <td><label for="firstName">Imię</label></td>
+        <td><input type="text" id="firstName" formControlName="firstName" autocomplete="given-name"></td>
       </tr>
       <tr>
         <td></td>
         <td>
-          <div class="validationAlert" *ngIf="!form.controls['name'].valid && form.controls['name'].touched">
+          <div class="validationAlert" *ngIf="!form.controls['firstName'].valid && form.controls['firstName'].touched">
             firstName
           </div>
         </td>
       </tr>
       <tr>
-        <td><label for="surname">Nazwisko</label></td>
-        <td><input type="text" id="surname" formControlName="lastName" autocomplete="family-firstName"></td>
+        <td><label for="lastName">Nazwisko</label></td>
+        <td><input type="text" id="lastName" formControlName="lastName" autocomplete="family-name"></td>
       </tr>
       <tr>
         <td></td>
@@ -51,8 +63,8 @@
         </td>
       </tr>
       <tr>
-        <td><label for="dateOfBirth">Data urodzenia</label></td>
-        <td><input type="date" id="dateOfBirth" formControlName="dateOfBirth" autocomplete="bday" min="1900-01-01"
+        <td><label for="bday">Data urodzenia</label></td>
+        <td><input type="date" id="bday" formControlName="bday" autocomplete="bday" min="1900-01-01"
                    max="2005-12-31"></td>
       </tr>
       <tr>
@@ -70,5 +82,3 @@
       <button type="submit" [disabled]="!form.valid">Dodaj nowego administratora</button>
     </div>
   </form>
-
-<!--todo dodaj login, usuń hasło-->

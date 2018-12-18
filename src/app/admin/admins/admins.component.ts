@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {faEdit, faPlus} from '@fortawesome/free-solid-svg-icons';
 import {User} from '../../user/User';
 import {Router} from '@angular/router';
+import {UserService} from '../../user/user.service';
 
 @Component({
   selector: 'app-admins',
@@ -14,13 +15,13 @@ export class AdminsComponent implements OnInit {
   faEdit = faEdit;
   admins: User[];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private user: UserService) { }
 
   ngOnInit() {
-    //todo http
-    this.admins = [
-
-    ];
+    this.user.getAllAdmins().subscribe((admins)=>{
+      this.admins = admins;
+    });
   }
 
   edit(admin: User){

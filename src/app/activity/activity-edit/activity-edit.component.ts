@@ -19,7 +19,7 @@ export class ActivityEditComponent implements OnInit {
     description: ['', [Validators.required]],
     category: ['', [Validators.required, Validators.minLength(1)]],
     place: ['', [Validators.required]],
-    datetime: [(new Date(Date.now() + 3600000).toISOString()).substr(0, 16), [Validators.required]]
+    datetime: ['', [Validators.required]]
   });
 
   categories: Category[];
@@ -56,7 +56,9 @@ export class ActivityEditComponent implements OnInit {
       this.form.get('name').setValue(this.activity.name);
       this.form.get('description').setValue(this.activity.description);
       this.form.get('category').setValue(this.activity.category);
-      this.form.get('datetime').setValue(this.activity.date.toISOString().substr(0, 16));
+      this.form.get('datetime').setValue(//this.activity.date.toISOString().substr(0, 16)
+        this.activity.date.toISOString().substr(0, 10)
+        + 'T' + this.activity.date.toTimeString().substr(0, 5));
       this.placeId = this.activity.placeId;
       // this.placeId = 'EiRwbGFjIExpdGV3c2tpLCAyMC0wMDEgTHVibGluLCBQb2xhbmQiLiosChQKEgnVHuZHaFciRxE2UZhVYs_YtxIUChIJYUAVHhRXIkcRX-no9nruKFU';
       this.city = this.activity.city;
@@ -81,6 +83,7 @@ export class ActivityEditComponent implements OnInit {
           this.ngZone.run(() => {
             let place: google.maps.places.PlaceResult = autocomplete.getPlace();
             this.placeId = place.place_id;
+            console.info('length: ' + this.placeId.length);
             let locality = '';
             let administrative_area_level_2 = '';
             let administrative_area_level_1 = '';
@@ -112,10 +115,18 @@ export class ActivityEditComponent implements OnInit {
     const name = this.form.get('name').value;
     const description = this.form.get('description').value;
     const category = this.form.get('category').value;
-    const datetime = new Date(this.form.get('datetime').value);
+    const datetime = new Date(new Date(this.form.get('datetime').value).valueOf());
+    console.info(this.form.get('datetime').value);
+    console.info(datetime.toISOString());
     this.activityService.updateActivity(this.id, name, description, category, datetime, this.city, this.placeId).subscribe(() => {
       let link: string = '/activity/' + this.id;
       this.router.navigate([link]);
     });
   }
+
+  cancel() {
+    let link = '/activity/' + this.id;
+    this.router.navigate([link]);
+  }
+
 }

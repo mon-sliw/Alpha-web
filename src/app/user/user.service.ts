@@ -97,7 +97,7 @@ export class UserService {
           'email': email,
           'city': city,
           'bday': bday,
-         // 'authorities': ['ROLE_USER']
+          'authorities': ['ROLE_USER']
         },
         httpOptions).subscribe(() => {
         this.router.navigate(['/register-ok']);
@@ -153,7 +153,28 @@ export class UserService {
       this.myHttp.getHttpOptions());
   }
 
-  getAllAdmins(){
-    //todo get all admins
+  getAllAdmins(): Observable<User[]>{
+    return this.http.get<User[]>(this.myHttp.URL+'/users/admins',
+      this.myHttp.getHttpOptions());
   }
-}
+
+
+  registerAdmin(login: string, email: string, firstName: string, lastName: string, bday: Date, city: string) {
+  return this.http.post(this.myHttp.URL + '/users',
+    {
+      'login': login,
+      'firstName': firstName,
+      'lastName': lastName,
+      'email': email,
+      'city': city,
+      'bday': bday,
+      'authorities': ['ROLE_ADMIN']
+    },
+    this.myHttp.getHttpOptions());
+  }
+
+  getAllUsers():Observable<User[]>{
+    return this.http.get<User[]>(this.myHttp.URL+'/users',
+      this.myHttp.getHttpOptions());
+  }
+  }

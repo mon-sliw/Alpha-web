@@ -15,7 +15,7 @@ import {UserService} from '../user.service';
 export class EditProfileComponent implements OnInit, CanComponentDeactivate {
 
   login: string;
-  changed = false; //todo sprawdź
+  changed = false; //todo ew sprawdź
 
   user: User /*= {
     id: 1,

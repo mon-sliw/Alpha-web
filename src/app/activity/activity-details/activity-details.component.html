@@ -1,4 +1,4 @@
-<div class="all">
+<div class="all" *ngIf="activity">
   <h3>{{activity.name}}</h3>
   <h4>Data:</h4>
   {{activity.date.toLocaleString().substr(0, 17)}}
@@ -8,11 +8,26 @@
   <h4>Opis:</h4>
   <p>{{activity.description}}</p>
 
+  <div *ngIf="members[0]">
+  <h4>Autor:</h4>
+  <ul>
+    <li>
+      {{members[0].firstName}}, {{user.getAge(members[0].bday)}}
+    </li>
+  </ul>
+
   <h4>Uczestnicy:</h4>
   <ul>
     <li *ngFor="let member of members">
       {{member.firstName}}, {{user.getAge(member.bday)}}
     </li>
   </ul>
+  </div>
+  <div class="buttonIn">
+    <button *ngIf="!member && !author" (click)="addYourself()">Dołącz</button>
+    <button *ngIf="member" (click)="removeYourself()">Zrezygnuj</button>
+    <button *ngIf="author" (click)="edit()">Edytuj</button>
+    <button *ngIf="author" (click)="delete()">Usuń</button>
+  </div>
 </div>
-<!--todo dodaj i usuń się, edytuj-->
+<!--todo ew. nie istnieje-->

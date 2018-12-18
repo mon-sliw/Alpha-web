@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {User} from '../../user/User';
+import {UserService} from '../../user/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-admin',
@@ -11,17 +13,16 @@ export class AddAdminComponent implements OnInit {
 
   //TODO validators
   form = this.fb.group({
+    login: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required]],
-    repeatPassword: ['', [Validators.required]],
-    name: ['', [Validators.required]],
-    surname: [''],
+    firstName: ['', [Validators.required]],
+    lastName: [''],
     city: [''],
     bday: ['', [Validators.required]]
   });
   user: User;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
   }
 
   ngOnInit() {
@@ -29,16 +30,16 @@ export class AddAdminComponent implements OnInit {
   }
 
   submit() {
-//    console.info('submit');
-    this.user.email = this.form.get('email').value;
-    this.user.password = this.form.get('password').value;
-    this.user.firstName = this.form.get('name').value;
-    this.user.lastName = this.form.get('lastName').value;
-    this.user.city = this.form.get('city').value;
-    this.user.bday = new Date(this.form.get('bday').value + 'T12:00:00');
-    // this.submitted = true;
+    console.info('submit');
+    const login = this.form.get('login').value;
+    const email = this.form.get('email').value;
+    const firstName = this.form.get('firstName').value;
+    const lastName = this.form.get('lastName').value;
+    const city = this.form.get('city').value;
+    const bday = new Date(this.form.get('bday').value + 'T12:00:00');
 
-    //TODO http
-    //TODO register-ok
+    this.userService.registerAdmin(login, email, firstName, lastName, bday, city).subscribe(()=>{
+      this.router.navigate(['/admin/admins']);
+    });
   }
 }
