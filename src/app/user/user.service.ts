@@ -144,7 +144,7 @@ export class UserService {
   }
 
   deleteUser(login: string) {
-    return this.http.delete(this.myHttp.URL + '/deactivate/' + login,
+    return this.http.get(this.myHttp.URL + '/deactivate/' + login,
       this.myHttp.getHttpOptions());
   }
 

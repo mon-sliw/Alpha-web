@@ -42,7 +42,15 @@ export class ProfileComponent implements OnInit {
   delete() {
     if (confirm('Czy na pewno chcesz usunąć konto?')) {
       this.userService.deleteUser(this.login).subscribe(() => {
-        this.router.navigate(['/user-deleted']);
+        this.userService.logout().subscribe((res: any) => {
+          localStorage.removeItem('auth_token');
+          localStorage.removeItem('login');
+          localStorage.removeItem('id');
+          if (!!localStorage.getItem('admin'))
+            localStorage.removeItem('admin');
+          this.userService.setLoggedInFalse();
+          this.router.navigate(['/user-deleted']);
+        });
       });
     }
   }
