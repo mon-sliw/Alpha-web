@@ -80,7 +80,7 @@ export class ActivityService {
   }
 
   removeMember(activity_id: string, user_id: string) {
-    return this.http.delete(this.myHttp.URL + '/event/members/delete',  //todo uzupełnij
+    return this.http.delete(this.myHttp.URL + '/event/members/delete/eventId/'+activity_id+'/userId/'+user_id,
       this.myHttp.getHttpOptions());
   }
 
