@@ -36,7 +36,7 @@ export class EditUserComponent implements OnInit {
 
   ngOnInit() {
     this.login = this.route.snapshot.paramMap.get('login');
-    this.userService.getUser(this.login).subscribe(user =>{
+    this.userService.getUser(this.login).subscribe(user => {
         this.user = user;
         this.user.bday = new Date(user.bday);
         this.form.get('login').setValue(this.user.login);
@@ -56,7 +56,8 @@ export class EditUserComponent implements OnInit {
     this.user.city = this.form.get('city').value;
     this.user.bday = new Date(this.form.get('bday').value + 'T12:00:00');
 
-    this.userService.updateProfile(this.user.id, this.user.login, this.user.email, this.user.firstName, this.user.lastName, this.user.city, this.user.bday, this.user.authorities).subscribe(()=>{
+    this.userService.updateProfile(this.user.id, this.user.login, this.user.email, this.user.firstName, this.user.lastName, this.user.city, this.user.bday, this.user.authorities).subscribe(() => {
       this.router.navigate(['/admin/users']);
     });
+  }
 }
