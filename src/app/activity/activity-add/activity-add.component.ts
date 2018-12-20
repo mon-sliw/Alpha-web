@@ -6,6 +6,7 @@ import {ActivityService} from '../activity.service';
 import {Category} from '../../admin/Category';
 import {MapsAPILoader} from '@agm/core';
 import {UserService} from '../../user/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-activity-add',
@@ -33,6 +34,7 @@ export class ActivityAddComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private activityService: ActivityService,
+              private router: Router,
               private user: UserService,
               private mapsAPILoader: MapsAPILoader,
               private ngZone: NgZone) {
@@ -91,7 +93,10 @@ export class ActivityAddComponent implements OnInit {
     const datetime = new Date(this.form.get('datetime').value);
     this.activityService.add(name, description, category, datetime, this.city, this.placeID).subscribe(
       activity => {
-        this.activityService.addMember(activity.id, this.user.getID());
+        this.activityService.addMember(activity.id, this.user.getID()).subscribe(() => {
+          let link = '/activity/' + activity.id;
+          this.router.navigate([link]);
+        });
       });
   }
 }

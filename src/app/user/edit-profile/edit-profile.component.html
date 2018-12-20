@@ -6,10 +6,9 @@
         <td><input type="text" id="login" formControlName="login" autocomplete="username"></td>
       </tr>
       <tr>
-        <td></td>
-        <td>
+        <td colspan="2">
           <div class="validationAlert" *ngIf="!form.controls['login'].valid && form.controls['login'].touched">
-            login
+            Login może zawierać tylko litery, cyfry lub znaki . _ - @
           </div>
         </td>
       </tr>
@@ -18,23 +17,20 @@
         <td><input type="email" id="email" formControlName="email" autocomplete="email"></td>
       </tr>
       <tr>
-        <td></td>
-        <td>
+        <td colspan="2">
           <div class="validationAlert" *ngIf="!form.controls['email'].valid && form.controls['email'].touched">
-            email
+            Podaj poprawny adres email.
           </div>
         </td>
       </tr>
-
       <tr>
         <td><label for="firsName">Imię</label></td>
         <td><input type="text" id="firsName" formControlName="firstName" autocomplete="given-name"></td>
       </tr>
       <tr>
-        <td></td>
-        <td>
+        <td colspan="2">
           <div class="validationAlert" *ngIf="!form.controls['firstName'].valid && form.controls['firstName'].touched">
-            firstName
+            Imię może składać się tylko z liter.
           </div>
         </td>
       </tr>
@@ -43,10 +39,9 @@
         <td><input type="text" id="lastName" formControlName="lastName" autocomplete="family-name"></td>
       </tr>
       <tr>
-        <td></td>
-        <td>
-          <div class="validationAlert" *ngIf="!form.controls['lastName'].valid && form.controls['lastName'].touched">
-            lastName
+        <td colspan="2">
+          <div class="validationAlert" *ngIf="!form.controls['firstName'].valid && form.controls['firstName'].touched">
+            Nazwisko może składać się tylko z liter.
           </div>
         </td>
       </tr>
@@ -55,10 +50,9 @@
         <td><input style="min-width: max-content" type="text" id="city" formControlName="city"></td>
       </tr>
       <tr>
-        <td></td>
-        <td>
+        <td colspan="2">
           <div class="validationAlert" *ngIf="!form.controls['city'].valid && form.controls['city'].touched">
-            city
+            Miasto może składać się tylko z liter.
           </div>
         </td>
       </tr>
@@ -68,10 +62,9 @@
                    max="2005-12-31"></td>
       </tr>
       <tr>
-        <td></td>
-        <td>
+        <td colspan="2">
           <div class="validationAlert" *ngIf="!form.controls['bday'].valid && form.controls['bday'].touched">
-            dateOfBirth
+            Musisz podać datę urodzenia.
           </div>
         </td>
       </tr>
