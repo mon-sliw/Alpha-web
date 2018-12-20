@@ -93,10 +93,8 @@ export class ActivityAddComponent implements OnInit {
     const datetime = new Date(this.form.get('datetime').value);
     this.activityService.add(name, description, category, datetime, this.city, this.placeID).subscribe(
       activity => {
-        this.activityService.addMember(activity.id, this.user.getID()).subscribe(() => {
-          let link = '/activity/' + activity.id;
-          this.router.navigate([link]);
-        });
+        let link = '/activity/' + activity.id;
+        this.router.navigate([link]);
       });
   }
 }

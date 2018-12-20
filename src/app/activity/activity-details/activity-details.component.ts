@@ -45,9 +45,7 @@ export class ActivityDetailsComponent implements OnInit {
         for (let i = 0; i < users.length; i++) {
           this.members[i] = users[i];
           this.members[i].bday = new Date(users[i].bday);
-          if (this.members[i].login == this.user.getLogin()) {
-            this.member = true;
-          }
+          this.member = this.members[i].login == this.user.getLogin();
         }
 
         if (this.activity.author == this.user.getLogin()) {
@@ -82,11 +80,33 @@ export class ActivityDetailsComponent implements OnInit {
   }
 
   addYourself() {
-    this.activityService.addMember(this.activity.id, this.user.getID());
+    console.info('adding...');
+    this.activityService.addMember(this.activity.id, this.user.getID()).subscribe(() => {
+      console.info('added');
+      this.activityService.getMembers(this.id).subscribe((users) => {
+        this.members = users;
+        for (let i = 0; i < users.length; i++) {
+          this.members[i] = users[i];
+          this.members[i].bday = new Date(users[i].bday);
+          this.member = this.members[i].login == this.user.getLogin();
+        }
+      });
+    });
   }
 
   removeYourself() {
-    this.activityService.removeMember(this.id, this.user.getID());
+    this.activityService.removeMember(this.id, this.user.getID()).subscribe(() => {
+      console.info('removed');
+      this.activityService.getMembers(this.id).subscribe((users) => {
+        console.info('new users');
+        this.members = users;
+        for (let i = 0; i < users.length; i++) {
+          this.members[i] = users[i];
+          this.members[i].bday = new Date(users[i].bday);
+          this.member = this.members[i].login == this.user.getLogin();
+        }
+      });
+    });
   }
 
   edit() {
