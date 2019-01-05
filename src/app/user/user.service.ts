@@ -20,7 +20,6 @@ export class UserService {
   }
 
   login(login, password) {
-    console.info('login start http');
     return this.http
       .post(
         this.myHttp.URL + '/authenticate',
@@ -29,6 +28,17 @@ export class UserService {
           'password': password
         },
       );
+  }
+
+  getIDFromLogin(login: string) {
+    return this.http.get(
+      this.myHttp.URL + '/users/get/id/' + login,
+      this.myHttp.getHttpOptions());
+  }
+
+  checkIfAdmin(login: string) {
+    return this.http.get(this.myHttp.URL + '/users/check/' + login,
+      this.myHttp.getHttpOptions());
   }
 
   logout() {
@@ -66,12 +76,6 @@ export class UserService {
 
   getID(): string {
     return localStorage.getItem('id');
-  }
-
-  getIDFromLogin(login: string) {
-    return this.http.get(
-      this.myHttp.URL + '/users/get/id/' + login,
-      this.myHttp.getHttpOptions());
   }
 
   register(login: string, email: string, firstName: string, lastName: string, bday: Date, city: string) {
@@ -145,11 +149,6 @@ export class UserService {
 
   deleteUser(login: string) {
     return this.http.get(this.myHttp.URL + '/deactivate/' + login,
-      this.myHttp.getHttpOptions());
-  }
-
-  checkIfAdmin(login: string) {
-    return this.http.get(this.myHttp.URL + '/users/check/' + login,
       this.myHttp.getHttpOptions());
   }
 

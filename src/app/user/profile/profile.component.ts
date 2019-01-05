@@ -36,6 +36,8 @@ export class ProfileComponent implements OnInit {
     this.userService.getUser(this.login).subscribe(user => {
       this.user = user;
       this.user.bday = new Date(user.bday);
+    }, () => {
+      this.router.navigate(['/pnf']);
     });
   }
 
@@ -49,7 +51,7 @@ export class ProfileComponent implements OnInit {
           if (!!localStorage.getItem('admin'))
             localStorage.removeItem('admin');
           this.userService.setLoggedInFalse();
-          this.router.navigate(['/user-deleted']);
+          this.router.navigate(['/userService-deleted']);
         });
       });
     }

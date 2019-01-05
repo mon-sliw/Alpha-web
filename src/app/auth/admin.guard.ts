@@ -16,7 +16,6 @@ export class AdminGuard implements CanActivate, CanActivateChild {
     if (this.user.isAdmin()) {
       return true;
     } else {
-      // this.user.redirectURL = state.url;
       this.router.navigate(['/restricted']);
       return false;
     }

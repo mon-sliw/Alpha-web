@@ -37,8 +37,8 @@ export class ActivityDetailsComponent implements OnInit {
       this.activity.date = new Date(activity.date);
       this.activityService.getMembers(this.id).subscribe((users) => {  //aMembers: ActivityMember[]
         /*for (let i = 0; i<aMembers.length; i++){
-          this.members[i] = aMembers[i].user;
-          this.members[i].bday = new Date(aMembers[i].user.bday);
+          this.members[i] = aMembers[i].userService;
+          this.members[i].bday = new Date(aMembers[i].userService.bday);
         }*/
 
         this.members = users;
@@ -75,6 +75,8 @@ export class ActivityDetailsComponent implements OnInit {
             }));
         });
       });
+    }, () => {
+      this.router.navigate(['/pnf']);
     });
 
   }

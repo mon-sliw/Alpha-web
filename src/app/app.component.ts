@@ -17,25 +17,25 @@ export class AppComponent {
   faCog = faCog;
   faPlus = faPlus;
 
-  constructor(protected user: UserService, private router: Router) {
+  constructor(protected userService: UserService, private router: Router) {
   }
 
   logout() {
     if (confirm('Czy na pewno chcesz się wylogować?')) {
-      this.user.logout().subscribe((res: any) => {
+      this.userService.logout().subscribe((res: any) => {
         localStorage.removeItem('auth_token');
         localStorage.removeItem('login');
         localStorage.removeItem('id');
         if (!!localStorage.getItem('admin'))
           localStorage.removeItem('admin');
-        this.user.setLoggedInFalse();
+        this.userService.setLoggedInFalse();
         this.router.navigate(['/logout']);
       });
     }
   }
 
   clickUser() {
-    if (this.user.isLoggedIn()) {
+    if (this.userService.isLoggedIn()) {
       this.router.navigate(['/profile']);
     } else {
       this.router.navigate(['/login']);

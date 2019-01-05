@@ -60,14 +60,11 @@ export class SearchComponent implements OnInit {
       autocomplete.addListener('place_changed', () => {
         this.ngZone.run(() => {
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-
           this.placeID = place.place_id;
-          console.info('id: '+this.placeID);
           let locality = '';
           let administrative_area_level_2 = '';
           let administrative_area_level_1 = '';
           let country = '';
-
           for (let i = 0; i < place.address_components.length; i++) {
             if (place.address_components[i].types.includes('locality')) {
               locality = place.address_components[i].long_name;

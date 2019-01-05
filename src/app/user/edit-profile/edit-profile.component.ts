@@ -20,7 +20,7 @@ export class EditProfileComponent implements OnInit, CanComponentDeactivate {
   user: User /*= {
     id: 1,
     login: 'login',
-    email: 'user@user.com',
+    email: 'userService@userService.com',
     password: 'passwd',
     firstName: 'John',
     lastName: 'Doe',
@@ -42,7 +42,7 @@ export class EditProfileComponent implements OnInit, CanComponentDeactivate {
   }
 
   ngOnInit() {
-    // console.info('bday: ' + this.user.bday.toLocaleDateString());
+    // console.info('bday: ' + this.userService.bday.toLocaleDateString());
     this.login = this.userService.getLogin();
     this.userService.getUser(this.login).subscribe((user)=>{
       this.user = user;

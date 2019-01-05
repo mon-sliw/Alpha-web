@@ -95,6 +95,8 @@ export class ActivityAddComponent implements OnInit {
       activity => {
         let link = '/activity/' + activity.id;
         this.router.navigate([link]);
+      }, error => {
+        //todo nie można dwóch w tym samym czasie
       });
   }
 }

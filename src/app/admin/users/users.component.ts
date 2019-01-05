@@ -24,6 +24,6 @@ export class UsersComponent implements OnInit {
   }
 
   edit(user: User){
-    this.router.navigate(['admin/users/edit-user/'+user.login]);
+    this.router.navigate(['admin/users/edit-userService/'+user.login]);
   }
 }

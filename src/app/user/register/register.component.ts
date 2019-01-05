@@ -38,6 +38,7 @@ export class RegisterComponent implements OnInit {
     const bday = new Date(this.form.get('bday').value + 'T12:00:00');
 
     this.userService.register(login, email, firstName, lastName, bday, city);
+    //todo wyświetlenie powtórzonego maila lub hasła
   }
 
 }

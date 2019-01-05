@@ -15,14 +15,14 @@ import {ForgotPasswordOkComponent} from './forgot-password-ok/forgot-password-ok
 
 const routes: Routes = [
   {path: 'login',component: LoginComponent},
-  {path: 'register', component: RegisterComponent}, //todo canDeactivate
+  {path: 'register', component: RegisterComponent},
   {path: 'profile/:login', component: ProfileComponent},
   {path: 'profile', canActivate: [UserGuard], component: ProfileComponent},
-  {path: 'profile-edit', canActivate: [UserGuard], canDeactivate: [CanDeactivateGuard], component: EditProfileComponent}, //TODO popraw
+  {path: 'profile-edit', canActivate: [UserGuard], canDeactivate: [CanDeactivateGuard], component: EditProfileComponent},
   {path: 'register-ok', component: RegisterOkComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'logout', component: LogoutComponent},
-  {path: 'user-deleted', canActivate: [UserGuard], component: UserDeletedComponent},
+  {path: 'userService-deleted', canActivate: [UserGuard], component: UserDeletedComponent},
   {path: 'password-edit', canActivate: [UserGuard], component: PasswordEditComponent},
   {path: 'forgot-password-ok', component: ForgotPasswordOkComponent}
 ];

@@ -21,57 +21,42 @@ export class LoginComponent implements OnInit {
   redirected = false;
   url = '';
 
-  constructor(private fb: FormBuilder, protected user: UserService, private router: Router) {
+  constructor(private fb: FormBuilder, protected userService: UserService, private router: Router) {
   }
 
   ngOnInit() {
-    this.url = this.user.redirectURL;
-    this.user.redirectURL = '';
-    this.redirected = this.user.redirected;
-    this.user.redirected = false;
+    this.url = this.userService.redirectURL;
+    this.userService.redirectURL = '';
+    this.redirected = this.userService.redirected;
+    this.userService.redirected = false;
   }
 
   logIn() {
     this.login = this.form.get('login').value;
     this.password = this.form.get('password').value;
-
-    console.info('login: ' + this.login + ', password: ' + this.password);
-
-    this.user.login(this.login, this.password).subscribe((res: any) => {
-
+    this.userService.login(this.login, this.password).subscribe((res: any) => {
       if (res) {
-        console.info('http sukces');
         localStorage.setItem('auth_token', res.id_token);
         localStorage.setItem('login', this.login);
-        this.user.setLoggedInTrue();
-        this.loginOK = this.user.isLoggedIn();
-        console.info('loginOK: ' + this.loginOK);
-
-        this.user.getIDFromLogin(this.login).subscribe(res => {
+        this.userService.setLoggedInTrue();
+        this.loginOK = this.userService.isLoggedIn();
+        this.userService.getIDFromLogin(this.login).subscribe(res => {
           let id = res.toString();
           localStorage.setItem('id', id);
-          console.info("id ok: "+ id);
-
-          this.user.checkIfAdmin(this.login).subscribe(res => {
-            console.info("if admin");
+          this.userService.checkIfAdmin(this.login).subscribe(res => {
             if (res.toString().includes("true")){
               localStorage.setItem('admin', 'true');
-              console.info("admin true");
-            } else {console.info("not admin")}
-
-
+            }
             if (this.redirected) {
               this.router.navigate([this.url]);
-            } else if (this.user.isAdmin()) {
+            } else if (this.userService.isAdmin()) {
               this.router.navigate(['/admin']);
             } else {
               this.router.navigate(['']);
             }
            });
         });
-
       }
-
     });
   }
 

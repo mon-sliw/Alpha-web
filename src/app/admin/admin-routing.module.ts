@@ -14,42 +14,25 @@ import {EditActivityComponent} from './edit-activity/edit-activity.component';
 
 const routes: Routes = [
   {
-    path: 'admin',
-    component: AdminPanelComponent,
-    canActivate: [AdminGuard],
-    children: [
+    path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard], children: [
       {
-        path: '',
-        canActivateChild: [AdminGuard],
-        children: [
-          {
-            path: 'users',
-            children: [
+        path: '', canActivateChild: [AdminGuard], children: [
+          {path: 'users', children: [
               {path: '', component: UsersComponent},
-              {path: 'edit-user/:login', component: EditUserComponent}
-            ]
-          },
-          {
-            path: 'activities',
-            children: [
+              {path: 'edit-userService/:login', component: EditUserComponent}
+            ]},
+          {path: 'activities', children: [
               {path: '', component: ActivitiesComponent},
               {path: 'edit/:id', component: EditActivityComponent}
-            ]
-          },
+            ]},
           {path: 'categories', component: CategoriesComponent},
-          {
-            path: 'admins',
-            children: [
+          {path: 'admins', children: [
               {path: '', component: AdminsComponent},
               {path: 'add-admin', component: AddAdminComponent},
               {path: 'edit-admin/:login', component: EditAdminComponent}
-            ]
-          },
+            ]},
           {path: '', redirectTo: '/admin/users', pathMatch: 'full'}
-        ]
-      }
-    ]
-  },
+        ]}]},
   {path: 'restricted', component: RestrictedComponent}
 ];
 

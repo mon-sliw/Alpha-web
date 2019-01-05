@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -8,14 +7,9 @@ import {FormControl} from '@angular/forms';
 })
 export class HomeComponent implements OnInit {
 
-  data: Date;
-
   constructor() {
   }
 
   ngOnInit() {
-    this.data = new Date(Date.now());
-
   }
-
 }

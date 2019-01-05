@@ -1,34 +1,24 @@
 <ul>
-  <li>
-    <a routerLink="/">
+  <li><a routerLink="/">
       <fa-icon [icon]="faHome"></fa-icon>
-    </a>
-  </li>
-  <li>
-    <a routerLink="/search" >
+    </a></li>
+  <li><a routerLink="/search" >
       <fa-icon [icon]="faSearch"></fa-icon>
-    </a>
-  </li>
-  <li *ngIf="this.user.isLoggedIn()">
-    <a routerLink="/add-activity" >
+    </a></li>
+  <li *ngIf="this.userService.isLoggedIn()"><a routerLink="/add-activity" >
       <fa-icon [icon]="faPlus"></fa-icon>
-    </a>
-  </li>
-  <li style="float: right" *ngIf="this.user.isLoggedIn()">
-    <a (click)="logout()">
+    </a></li>
+  <li style="float: right" *ngIf="this.userService.isLoggedIn()"><a (click)="logout()">
       <fa-icon [icon]="faPowerOff"></fa-icon>
-    </a>
-  </li>
-  <li style="float: right">
-    <a (click)="clickUser()">
+    </a></li>
+  <li style="float: right"><a (click)="clickUser()">
       <fa-icon [icon]="faUser"></fa-icon>
-    </a>
-  </li>
-  <li style="float: right" *ngIf="this.user.isAdmin()">
-    <a routerLink="/admin">
+    </a></li>
+  <li style="float: right" *ngIf="this.userService.isAdmin()"><a routerLink="/admin">
       <fa-icon [icon]="faCog"></fa-icon>
-    </a>
-  </li>
+    </a></li>
 </ul>
 
 <router-outlet></router-outlet>
+
+

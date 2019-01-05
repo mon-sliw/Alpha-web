@@ -8,7 +8,8 @@
       <tr>
         <td colspan="2">
           <div class="validationAlert" *ngIf="!form.controls['login'].valid && form.controls['login'].touched">
-            Login może zawierać tylko litery, cyfry lub znaki . _ - @
+            <!--Login może zawierać tylko litery, cyfry lub znaki . _ - @-->
+            Musisz podać login.
           </div>
       </tr>
       <tr>
@@ -18,7 +19,8 @@
       <tr>
         <td colspan="2">
           <div class="validationAlert" *ngIf="!form.controls['email'].valid && form.controls['email'].touched">
-            Podaj poprawny adres email.
+            <!--Podaj poprawny adres email.-->
+            Musisz podać poprawny adres email.
           </div>
         </td>
       </tr>
@@ -29,7 +31,8 @@
       <tr>
         <td colspan="2">
           <div class="validationAlert" *ngIf="!form.controls['firstName'].valid && form.controls['firstName'].touched">
-            Imię może składać się tylko z liter.
+            <!--Imię może składać się tylko z liter.-->
+            Musisz podać imię.
           </div>
         </td>
       </tr>
@@ -39,7 +42,7 @@
       </tr>
       <tr>
         <td colspan="2">
-          <div class="validationAlert" *ngIf="!form.controls['firstName'].valid && form.controls['firstName'].touched">
+          <div class="validationAlert" *ngIf="!form.controls['lastName'].valid && form.controls['lastName'].touched">
             Nazwisko może składać się tylko z liter.
           </div>
         </td>
@@ -51,7 +54,7 @@
       <tr>
         <td colspan="2">
           <div class="validationAlert" *ngIf="!form.controls['city'].valid && form.controls['city'].touched">
-            Miasto może składać się tylko z liter.
+            Nazwa miasta może składać się tylko z liter.
           </div>
         </td>
       </tr>
