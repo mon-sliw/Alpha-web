@@ -176,4 +176,13 @@ export class UserService {
     return this.http.get<User[]>(this.myHttp.URL+'/users',
       this.myHttp.getHttpOptions());
   }
+
+  activate(key: string, password: string){
+    return this.http.post(this.myHttp.URL + "/activate",
+      {
+        'key': key,
+        'newPassword': password
+      },
+      this.myHttp.getHttpOptions());
+  }
   }

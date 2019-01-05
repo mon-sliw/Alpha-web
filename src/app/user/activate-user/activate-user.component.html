@@ -1,0 +1,47 @@
+<div class="all">
+  <div>Aby zakończyć rejestrację musisz ustawić hasło.</div>
+  <form [formGroup]="form" (ngSubmit)="save()">
+    <table>
+      <tr>
+        <td><label for="newPassword">Nowe hasło</label></td>
+        <td><input type="password" id="newPassword" formControlName="newPassword" autocomplete="new-password" ></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div class="validationAlert" *ngIf="!form.controls['newPassword'].valid && form.controls['newPassword'].touched">
+            Podaj nowe hasło.
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="repeatPassword">Powtórz hasło</label></td>
+        <td><input type="password" id="repeatPassword" formControlName="repeatPassword" autocomplete="new-password">
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div class="validationAlert"
+               *ngIf="!form.controls['repeatPassword'].valid && form.controls['repeatPassword'].touched">
+            Powórz nowe hasło.
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div class="validationAlert" *ngIf="passDiff">
+            Powtórz nowe hasło. Hasła się różnią.
+          </div>
+        </td>
+      </tr>
+
+    </table>
+    <br/>
+    <div class="buttonIn">
+      <button type="submit" [disabled]="!form.valid||passDiff">Zapisz zmiany</button>
+      <button type="reset" routerLink="/profile">Anuluj</button>
+    </div>
+  </form>
+</div>
+<div class="all" *ngIf="error">Wystąpił błąd. Spróbuj ponownie.</div>

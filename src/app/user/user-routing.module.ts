@@ -12,6 +12,7 @@ import {UserGuard} from '../auth/user.guard';
 import {CanDeactivateGuard} from '../can-deactivate.guard';
 import {PasswordEditComponent} from './password-edit/password-edit.component';
 import {ForgotPasswordOkComponent} from './forgot-password-ok/forgot-password-ok.component';
+import {ActivateUserComponent} from './activate-user/activate-user.component';
 
 const routes: Routes = [
   {path: 'login',component: LoginComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'profile', canActivate: [UserGuard], component: ProfileComponent},
   {path: 'profile-edit', canActivate: [UserGuard], canDeactivate: [CanDeactivateGuard], component: EditProfileComponent},
   {path: 'register-ok', component: RegisterOkComponent},
+  {path: 'activate-user/:key', component: ActivateUserComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'logout', component: LogoutComponent},
   {path: 'userService-deleted', canActivate: [UserGuard], component: UserDeletedComponent},
